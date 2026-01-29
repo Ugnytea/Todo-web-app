@@ -13,16 +13,27 @@ public class DatabaseInitializer {
     @PostConstruct
     public void init() {
         try {
-            template.queryForObject("SELECT COUNT(*) FROM Todos", Integer.class);
+            template.queryForObject("SELECT COUNT(*) FROM TaskList", Integer.class);
         } catch (Exception e) {
-            template.execute("CREATE TABLE Todos (" +
+            template.execute("CREATE TABLE TaskList (" +
+                    "Id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "Name VARCHAR(255) NOT NULL" +
+                    ");"
+            );
+        }
+
+        try {
+            template.queryForObject("SELECT COUNT(*) FROM Task", Integer.class);
+        } catch (Exception e) {
+            template.execute("CREATE TABLE Task (" +
                     "Id INT AUTO_INCREMENT PRIMARY KEY," +
                     "Title VARCHAR(255) NOT NULL," +
                     "Description VARCHAR(500)," +
                     "Created_at DATE NOT NULL," +
                     "Due_till TIMESTAMP," +
                     "Important BOOL DEFAULT false," +
-                    "Completed BOOL DEFAULT false" +
+                    "Completed BOOL DEFAULT false," +
+                    "Group_id INTEGER REFERENCES TaskList(Id) ON DELETE SET NULL" +
                     ");"
             );
         }

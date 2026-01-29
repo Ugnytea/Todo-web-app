@@ -14,6 +14,7 @@ public class Task {
     private LocalDateTime dueTill;
     private boolean important;
     private boolean completed;
+    private Integer groupId;
 
 
     public Task() {
@@ -23,13 +24,14 @@ public class Task {
         this.id = id;
     }
 
-    public Task(String title, String description, Date createdAt, LocalDateTime dueTill, boolean important, boolean completed) {
+    public Task(String title, String description, Date createdAt, LocalDateTime dueTill, boolean important, boolean completed, Integer groupId) {
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
         this.dueTill = dueTill;
         this.important = important;
         this.completed = completed;
+        this.groupId = groupId;
     }
 
     public int getId() {
@@ -88,6 +90,14 @@ public class Task {
         this.completed = completed;
     }
 
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
     @Override
     public String toString() {
         return "Todo{" +
@@ -98,6 +108,7 @@ public class Task {
                 ", dueTill=" + dueTill +
                 ", important=" + important +
                 ", completed=" + completed +
+                ", groupId=" + groupId +
                 '}';
     }
 }
