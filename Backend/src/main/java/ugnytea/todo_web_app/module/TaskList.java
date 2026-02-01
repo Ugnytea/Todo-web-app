@@ -1,4 +1,4 @@
-package ugnytea.todo_web_app.Module;
+package ugnytea.todo_web_app.module;
 
 import org.springframework.data.annotation.Id;
 

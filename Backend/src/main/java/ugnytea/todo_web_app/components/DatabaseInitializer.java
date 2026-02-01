@@ -1,4 +1,4 @@
-package ugnytea.todo_web_app.Components;
+package ugnytea.todo_web_app.components;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
