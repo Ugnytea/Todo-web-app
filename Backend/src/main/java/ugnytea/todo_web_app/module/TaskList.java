@@ -1,7 +1,9 @@
 package ugnytea.todo_web_app.module;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.data.annotation.Id;
 
+@JsonPropertyOrder({"id", "name"})
 public class TaskList {
     @Id
     private int id;

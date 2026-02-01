@@ -1,16 +1,18 @@
 package ugnytea.todo_web_app.module;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.data.annotation.Id;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@JsonPropertyOrder({"id", "title", "description", "createdAt", "dueTill", "important", "completed", "groupId"})
 public class Task {
     @Id
     private int id;
     private String title;
     private String description;
-    private Date createdAt;
+    private LocalDate createdAt;
     private LocalDateTime dueTill;
     private boolean important;
     private boolean completed;
@@ -24,7 +26,7 @@ public class Task {
         this.id = id;
     }
 
-    public Task(String title, String description, Date createdAt, LocalDateTime dueTill, boolean important, boolean completed, Integer groupId) {
+    public Task(String title, String description, LocalDate createdAt, LocalDateTime dueTill, boolean important, boolean completed, Integer groupId) {
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
@@ -58,11 +60,11 @@ public class Task {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 

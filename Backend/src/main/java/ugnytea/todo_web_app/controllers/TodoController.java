@@ -115,11 +115,11 @@ public class TodoController {
         }
     }
 
-    @GetMapping("/groupOfTasks/{listName}")
-    public ResponseEntity<List<Task>> getGroupOfTasks(@PathVariable String listName) {
+    @GetMapping("/groupOfTasks/{id}")
+    public ResponseEntity<List<Task>> getGroupOfTasks(@PathVariable int id) {
         try {
             String sql = "SELECT * FROM Task WHERE Group_id=?";
-            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{listName});
+            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
 
             return ResponseEntity.ok(tasks);
         } catch (EmptyResultDataAccessException e) {
