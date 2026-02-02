@@ -1,0 +1,38 @@
+body {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+:root {
+  --accent-color: #ccd5ae;
+  --light-accent-color: #e9edc9;
+  --background: #fefae0;
+  --card-background: #faedcd;
+  --card-darker-background: #d4a373;
+
+  --register-light-border-color: rgba(255, 255, 255, 0.2);
+
+  --corner-rounded: 10px;
+  --corner-rounded-cirle: 40px;
+  --light-corner-rounded: 3px;
+
+  --strong-bottom-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  --light-spread-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --light-shadow:
+    0px 1px 1px rgb(0 0 0 / 0.1), 0px 1px 2px rgb(0 0 0 / 0.1),
+    0px 2px 4px rgb(0 0 0 / 0.1);
+}
