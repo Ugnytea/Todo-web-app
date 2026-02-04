@@ -1,0 +1,44 @@
+.task-container {
+  flex: auto;
+  padding: 2rem;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-left: var(--corner-rounded);
+}
+
+.tags {
+  display: flex;
+  font-family: "Poppins";
+  gap: 10px;
+  color: var(--dark-gray-text);
+  padding-right: var(--corner-rounded);
+}
+
+.task-box {
+  width: 100%;
+  height: auto;
+  background-color: var(--card-orange-background);
+  border-radius: var(--corner-rounded);
+}
+
+.task {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+
+  h3 {
+    align-self: center;
+  }
+}
+
+.dot {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid var(--accent-color);
+}

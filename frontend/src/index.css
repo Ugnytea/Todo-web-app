@@ -25,6 +25,7 @@ body {
   --light-accent-color: #e9edc9;
   --background: #fefae0;
   --card-background: #faedcd;
+  --card-orange-background: #d4a3735e;
   --card-darker-background: #d4a373;
 
   --dark-gray-text: #2e2e2e;
@@ -57,5 +58,13 @@ h2 {
   font-weight: 500;
   font-size: 24px;
   color: var(--dark-gray-text);
+  margin: 0;
+}
+
+h3 {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--lighter-gray-text);
   margin: 0;
 }
