@@ -2,7 +2,7 @@
   width: calc(250px - 2rem);
   height: calc(100vh - 2rem);
   padding: 1rem 1rem;
-  background-color: var(--accent-color);
+  background-color: var(--sidebar-background);
   box-shadow: var(--sidebar-shadow);
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
 }
 
 .card {
-  background-color: var(--light-accent-color);
+  background-color: var(--sidebar-card-background);
   box-shadow: var(--card-shadow);
   height: auto;
   border-radius: var(--corner-rounded);
