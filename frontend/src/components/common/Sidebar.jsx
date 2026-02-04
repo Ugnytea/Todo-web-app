@@ -15,7 +15,10 @@ function Sidebar() {
         </div>
       </section>
       <section>
-        <h2>Lists</h2>
+        <div className="title">
+          <h2>Lists</h2>
+          <h2>+</h2>
+        </div>
         <div className="card">
           <div>List one</div>
           <div>List two</div>
