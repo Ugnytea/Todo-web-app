@@ -1,3 +1,4 @@
+import Sidebar from "./sidebar/Sidebar";
 import Star from "./star/Star";
 
-export { Star };
+export { Sidebar, Star };
