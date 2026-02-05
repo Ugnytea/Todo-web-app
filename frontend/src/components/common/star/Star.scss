@@ -1,0 +1,17 @@
+.star {
+  content: url(/public/icons/star-not-filled.png);
+  width: 20px;
+  height: 20px;
+  align-self: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    content: url(/public/icons/star-filled.png);
+  }
+
+  &.active {
+    content: url(/public/icons/star-filled.png);
+  }
+}
