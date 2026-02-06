@@ -1,4 +1,5 @@
+import Completion from "./completion/Completion";
 import Sidebar from "./sidebar/Sidebar";
 import Star from "./star/Star";
 
-export { Sidebar, Star };
+export { Completion, Sidebar, Star };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Star } from "../../common/index.js";
+import { Completion, Star } from "../../common/index.js";
 
 import "./Home.scss";
 
@@ -15,21 +15,21 @@ function Home() {
 
       <div className="task-box">
         <section className="task">
-          <span className="dot"></span>
+          <Completion />
           <h3>Task one</h3>
           <h3 className="tags">2026-02-10</h3>
           <h3 className="tags">List one</h3>
           <Star />
         </section>
         <section className="task">
-          <span className="dot"></span>
+          <Completion />
           <h3>Task one</h3>
           <h3 className="tags"></h3>
           <h3 className="tags">List two</h3>
           <Star />
         </section>
         <section className="task">
-          <span className="dot"></span>
+          <Completion />
           <h3>Task one</h3>
           <h3 className="tags">2026-02-10</h3>
           <h3 className="tags"></h3>

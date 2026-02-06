@@ -21,12 +21,33 @@
   border-radius: var(--corner-rounded);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
+  // gap: 0.5rem;
+  padding: 0.25rem 0 0.25rem;
+  overflow: hidden;
 
-  div {
+  button {
     font-family: "Poppins";
     font-size: 15px;
+    background-color: inherit;
+    border: none;
+    padding: 0.25rem 0 0.25rem 1rem;
+    text-align: left;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: var(--slected-tab);
+      // transition: 0.2s;
+    }
+
+    &:first-child:hover {
+      margin-top: -0.5rem;
+      padding-top: calc(0.25rem + 0.5rem);
+    }
+
+    &:last-child:hover {
+      margin-bottom: -0.5rem;
+      padding-bottom: calc(0.25rem + 0.5rem);
+    }
   }
 }
 

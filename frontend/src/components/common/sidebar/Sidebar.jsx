@@ -9,9 +9,9 @@ function Sidebar() {
       <section>
         <h2>Tasks</h2>
         <div className="card">
-          <div>Today</div>
-          <div>Upcoming</div>
-          <div>Important</div>
+          <button>Today</button>
+          <button>Upcoming</button>
+          <button>Important</button>
         </div>
       </section>
       <section>
@@ -20,8 +20,8 @@ function Sidebar() {
           <h2>+</h2>
         </div>
         <div className="card">
-          <div>List one</div>
-          <div>List two</div>
+          <button>List one</button>
+          <button>List two</button>
         </div>
       </section>
     </aside>
