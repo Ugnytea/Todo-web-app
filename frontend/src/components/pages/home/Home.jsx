@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Completion, Star } from "../../common/index.js";
+import { getAllTasks } from "../../../api/apiTasks";
 
 import "./Home.scss";
 
 function Home() {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    loadTasks();
+  }, []);
+
+  const loadTasks = async () => {
+    try {
+      const data = await getAllTasks();
+      setTasks(data);
+    } catch (error) {
+      console.error("Failed to load tasks");
+    }
+  };
+
   return (
     <div className="task-container">
       <div className="header">
@@ -14,7 +30,17 @@ function Home() {
       </div>
 
       <div className="task-box">
-        <section className="task">
+        {tasks.map((task) => (
+          <section key={task.id} className="task">
+            <Completion />
+            <h3>{task.title}</h3>
+            <h3 className="tags">{task.dueTill}</h3>
+            <h3 className="tags">{task.groupId}</h3>
+            <Star />
+          </section>
+        ))}
+
+        {/* <section className="task">
           <Completion />
           <h3>Task one</h3>
           <h3 className="tags">2026-02-10</h3>
@@ -33,9 +59,8 @@ function Home() {
           <h3>Task one</h3>
           <h3 className="tags">2026-02-10</h3>
           <h3 className="tags"></h3>
-          {/* <img src="/public/icons/star-not-filled.png" /> */}
           <Star />
-        </section>
+        </section> */}
       </div>
     </div>
   );

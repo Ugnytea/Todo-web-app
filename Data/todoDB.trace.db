@@ -1,0 +1,6 @@
+2026-02-07 19:37:13.438826+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TASKLIST" not found (this database is empty); SQL statement:
+SELECT COUNT(*) FROM TaskList [42104-240]
+2026-02-07 19:37:13.503543+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TASK" not found; SQL statement:
+SELECT COUNT(*) FROM Task [42102-240]

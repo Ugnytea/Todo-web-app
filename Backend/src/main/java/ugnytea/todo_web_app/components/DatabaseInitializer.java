@@ -30,7 +30,7 @@ public class DatabaseInitializer {
                     "Title VARCHAR(255) NOT NULL," +
                     "Description VARCHAR(500)," +
                     "Created_at DATE NOT NULL," +
-                    "Due_till TIMESTAMP," +
+                    "Due_till Date," +
                     "Important BOOL DEFAULT false," +
                     "Completed BOOL DEFAULT false," +
                     "Group_id INTEGER REFERENCES TaskList(Id) ON DELETE SET NULL" +

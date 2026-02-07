@@ -17,6 +17,42 @@ public class TodoController {
     @Autowired
     JdbcTemplate template;
 
+    @GetMapping("/task/{id}")
+    public ResponseEntity<Task> getTask (@PathVariable int id) {
+        try {
+            String sql = "SELECT * FROM Task WHERE Id=?";
+            Task task = template.queryForObject(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
+
+            return ResponseEntity.ok(task);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Task>> getAllTasks () {
+        try {
+            String sql = "SELECT * FROM Task";
+            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class));
+
+            return ResponseEntity.ok(tasks);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/groupOfTasks/{id}")
+    public ResponseEntity<List<Task>> getGroupOfTasks(@PathVariable int id) {
+        try {
+            String sql = "SELECT * FROM Task WHERE Group_id=?";
+            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
+
+            return ResponseEntity.ok(tasks);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<String> createTask (@RequestBody Task task) {
         try {
@@ -88,42 +124,6 @@ public class TodoController {
             return ResponseEntity.ok("Task updated successfully!");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to update task.");
-        }
-    }
-
-    @GetMapping("/task/{id}")
-    public ResponseEntity<Task> getTask (@PathVariable int id) {
-        try {
-            String sql = "SELECT * FROM Task WHERE Id=?";
-            Task task = template.queryForObject(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
-
-            return ResponseEntity.ok(task);
-        } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks () {
-        try {
-            String sql = "SELECT * FROM Task";
-            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class));
-
-            return ResponseEntity.ok(tasks);
-        } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping("/groupOfTasks/{id}")
-    public ResponseEntity<List<Task>> getGroupOfTasks(@PathVariable int id) {
-        try {
-            String sql = "SELECT * FROM Task WHERE Group_id=?";
-            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
-
-            return ResponseEntity.ok(tasks);
-        } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.notFound().build();
         }
     }
 

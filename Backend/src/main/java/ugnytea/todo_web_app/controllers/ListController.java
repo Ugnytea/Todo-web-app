@@ -18,6 +18,18 @@ public class ListController {
     @Autowired
     JdbcTemplate template;
 
+    @GetMapping
+    public ResponseEntity<List<TaskList>> getAllLists() {
+        try {
+            String sql = "SELECT * FROM TaskList";
+            List<TaskList> lists = template.query(sql, new BeanPropertyRowMapper<>(TaskList.class));
+
+            return ResponseEntity.ok(lists);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<String> createList(@RequestBody TaskList list) {
         try {
@@ -44,18 +56,6 @@ public class ListController {
             return ResponseEntity.ok("List updated successfully!");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to update task.");
-        }
-    }
-
-    @GetMapping
-    public ResponseEntity<List<TaskList>> getAllLists() {
-        try {
-            String sql = "SELECT * FROM TaskList";
-            List<TaskList> lists = template.query(sql, new BeanPropertyRowMapper<>(TaskList.class));
-
-            return ResponseEntity.ok(lists);
-        } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.notFound().build();
         }
     }
 

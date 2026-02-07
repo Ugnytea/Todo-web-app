@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @JsonPropertyOrder({"id", "title", "description", "createdAt", "dueTill", "important", "completed", "groupId"})
 public class Task {
@@ -13,7 +13,7 @@ public class Task {
     private String title;
     private String description;
     private LocalDate createdAt;
-    private LocalDateTime dueTill;
+    private LocalDate dueTill;
     private boolean important;
     private boolean completed;
     private Integer groupId;
@@ -26,7 +26,7 @@ public class Task {
         this.id = id;
     }
 
-    public Task(String title, String description, LocalDate createdAt, LocalDateTime dueTill, boolean important, boolean completed, Integer groupId) {
+    public Task(String title, String description, LocalDate createdAt, LocalDate dueTill, boolean important, boolean completed, Integer groupId) {
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
@@ -68,11 +68,11 @@ public class Task {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getDueTill() {
+    public LocalDate getDueTill() {
         return dueTill;
     }
 
-    public void setDueTill(LocalDateTime dueTill) {
+    public void setDueTill(LocalDate dueTill) {
         this.dueTill = dueTill;
     }
 
