@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Sidebar, Home } from "./components/index.js";
+import { Sidebar, AllTasks } from "./components/index.js";
 
 import "./App.css";
 
@@ -8,8 +8,7 @@ function App() {
   return (
     <div className="container">
       <Sidebar />
-      <Home />
-      {/* <div>Hello</div> */}
+      <AllTasks />
     </div>
   );
 }

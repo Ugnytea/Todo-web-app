@@ -29,18 +29,18 @@ export const getGroupOfTasks = async (groupId) => {
 
 // Create task
 export const createTask = async (task) => {
-  const response = await api.get("/create", task);
+  const response = await api.post("/create", task);
   return response.data;
 };
 
 // Update task
-export const updateTask = async (task) => {
-  const response = await api.get("/update", task);
+export const updateTask = async (updatedTask) => {
+  const response = await api.put("/update", updatedTask);
   return response.data;
 };
 
 // Delete specific tasks
 export const deleteTask = async (id) => {
-  const response = await api.get("/delete/${id}");
+  const response = await api.delete("/delete/${id}");
   return response.data;
 };

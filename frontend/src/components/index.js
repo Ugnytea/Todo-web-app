@@ -1,4 +1,4 @@
 import { Sidebar } from "./common/index.js";
-import Home from "./pages/home/home";
+import AllTasks from "./pages/all_tasks/AllTasks";
 
-export { Sidebar, Home };
+export { Sidebar, AllTasks };

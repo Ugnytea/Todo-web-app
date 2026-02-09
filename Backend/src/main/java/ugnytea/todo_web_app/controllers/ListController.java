@@ -42,7 +42,7 @@ public class ListController {
         }
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<String> updateList(@RequestBody TaskList list) {
         try {
             String sql = "UPDATE TaskList SET Name=? WHERE Id=?;";

@@ -1,14 +1,28 @@
 import { useState } from "react";
 
+import { updateTask } from "../../../api/apiTasks";
+
 import "./Star.scss";
 
-function Star() {
-  const [active, setActive] = useState(false);
+function Star({ task, onUpdate }) {
+  const toggleImportance = async () => {
+    console.log("clicked", task.id);
+    try {
+      const updatedTask = {
+        ...task,
+        important: !task.important,
+      };
 
+      await updateTask(updatedTask);
+      onUpdate();
+    } catch (error) {
+      console.error("Failed to toggle importance.", error);
+    }
+  };
   return (
     <div
-      className={`star ${active ? "active" : ""}`}
-      onClick={() => setActive(!active)}
+      className={`star ${task.important ? "active" : ""}`}
+      onClick={toggleImportance}
     />
   );
 }

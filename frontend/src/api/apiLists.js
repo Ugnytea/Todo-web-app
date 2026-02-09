@@ -16,19 +16,19 @@ export const getAllLists = async () => {
 };
 
 // Create list
-export const createTask = async (list) => {
-  const response = await api.get("/create", task);
+export const createList = async (list) => {
+  const response = await api.put("/create", task);
   return response.data;
 };
 
 // Update list
-export const updateTask = async (list) => {
-  const response = await api.get("/update", task);
+export const updateList = async (list) => {
+  const response = await api.put("/update", task);
   return response.data;
 };
 
 // Delete specific list
-export const deleteTask = async (id) => {
-  const response = await api.get("/delete/${id}");
+export const deleteList = async (id) => {
+  const response = await api.put("/delete/${id}");
   return response.data;
 };

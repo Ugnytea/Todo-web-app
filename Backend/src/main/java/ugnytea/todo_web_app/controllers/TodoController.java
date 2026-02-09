@@ -33,7 +33,7 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<TaskWithGroup>> getAllTasks () {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id ORDER BY Due_till NULLS LAST, Created_at;";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
             List<TaskWithGroup> tasks = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class));
 
             return ResponseEntity.ok(tasks);
@@ -45,7 +45,7 @@ public class TodoController {
     @GetMapping("/groupOfTasks/{id}")
     public ResponseEntity<List<TaskWithGroup>> getGroupOfTasks(@PathVariable int id) {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE Group_id=? ORDER BY Due_till NULLS LAST, Created_at;";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE Group_id=? ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
             List<TaskWithGroup> tasks = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class), new Object[]{id});
 
             return ResponseEntity.ok(tasks);
@@ -95,30 +95,19 @@ public class TodoController {
 
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<String> updateTask (@RequestBody Task task) {
         try {
-            String sql = "UPDATE Task SET ";
+            String sql = "UPDATE Task SET Title=?, Description=?, Due_till=?, Important=?, Completed=?, Group_id=? WHERE Id=?;";
             ArrayList<Object> params = new ArrayList<>();
 
-            if (task.getTitle() != null) {
-                sql = sql.concat("Title=?, ");
-                params.add(task.getTitle());
-            }
-            if (task.getDescription() != null) {
-                sql = sql.concat("Description=?, ");
-                params.add(task.getTitle());
-            }
-            if (task.getDueTill() != null) {
-                sql = sql.concat("Due_till=?, ");
-                params.add(task.getDueTill());
-            }
-
-            sql = sql.concat("Important=?, Completed=?, Group_id=? WHERE Id=?;");
+            params.add(task.getTitle());
+            params.add(task.getDescription());
+            params.add(task.getDueTill());
             params.add(task.isImportant());
             params.add(task.isCompleted());
-            params.add(task.getId());
             params.add(task.getGroupId());
+            params.add(task.getId());
 
             template.update(sql, params.toArray());
 
