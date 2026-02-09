@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import ugnytea.todo_web_app.module.Task;
 import ugnytea.todo_web_app.module.TaskList;
+import ugnytea.todo_web_app.module.TaskWithGroup;
 
 import java.util.*;
 
@@ -20,7 +21,7 @@ public class TodoController {
     @GetMapping("/task/{id}")
     public ResponseEntity<Task> getTask (@PathVariable int id) {
         try {
-            String sql = "SELECT * FROM Task WHERE Id=?";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE t.Id=?";
             Task task = template.queryForObject(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
 
             return ResponseEntity.ok(task);
@@ -30,10 +31,10 @@ public class TodoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks () {
+    public ResponseEntity<List<TaskWithGroup>> getAllTasks () {
         try {
-            String sql = "SELECT * FROM Task";
-            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class));
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id ORDER BY Due_till NULLS LAST, Created_at;";
+            List<TaskWithGroup> tasks = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class));
 
             return ResponseEntity.ok(tasks);
         } catch (EmptyResultDataAccessException e) {
@@ -42,10 +43,10 @@ public class TodoController {
     }
 
     @GetMapping("/groupOfTasks/{id}")
-    public ResponseEntity<List<Task>> getGroupOfTasks(@PathVariable int id) {
+    public ResponseEntity<List<TaskWithGroup>> getGroupOfTasks(@PathVariable int id) {
         try {
-            String sql = "SELECT * FROM Task WHERE Group_id=?";
-            List<Task> tasks = template.query(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE Group_id=? ORDER BY Due_till NULLS LAST, Created_at;";
+            List<TaskWithGroup> tasks = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class), new Object[]{id});
 
             return ResponseEntity.ok(tasks);
         } catch (EmptyResultDataAccessException e) {
@@ -79,7 +80,7 @@ public class TodoController {
             }
 
             sql = sql.concat(", Important, Completed)");
-            values = values.concat(", ?, ?)");
+            values = values.concat(", ?, ?);");
             params.add(task.isImportant());
             params.add(task.isCompleted());
 
@@ -113,7 +114,7 @@ public class TodoController {
                 params.add(task.getDueTill());
             }
 
-            sql = sql.concat("Important=?, Completed=?, Group_id=? WHERE Id=?");
+            sql = sql.concat("Important=?, Completed=?, Group_id=? WHERE Id=?;");
             params.add(task.isImportant());
             params.add(task.isCompleted());
             params.add(task.getId());
@@ -129,7 +130,7 @@ public class TodoController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteTask (@PathVariable int id) {
-        String sql = "DELETE FROM Task WHERE Id=?";
+        String sql = "DELETE FROM Task WHERE Id=?;";
         int rowsAffected = template.update(sql, id);
 
         if (rowsAffected > 0) {

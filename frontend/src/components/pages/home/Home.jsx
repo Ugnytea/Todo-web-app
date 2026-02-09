@@ -35,7 +35,7 @@ function Home() {
             <Completion />
             <h3>{task.title}</h3>
             <h3 className="tags">{task.dueTill}</h3>
-            <h3 className="tags">{task.groupId}</h3>
+            <h3 className="tags">{task.groupName}</h3>
             <Star />
           </section>
         ))}
