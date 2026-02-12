@@ -21,7 +21,6 @@
   border-radius: var(--corner-rounded);
   display: flex;
   flex-direction: column;
-  // gap: 0.5rem;
   padding: 0.25rem 0 0.25rem;
   overflow: hidden;
 
@@ -55,4 +54,17 @@
   display: flex;
   justify-content: space-between;
   padding-right: var(--corner-rounded);
+
+  button {
+    background-color: inherit;
+    border: none;
+
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--dark-gray-text);
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
 }
