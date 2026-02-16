@@ -21,13 +21,20 @@ body {
 } */
 
 :root {
+  /* page background */
   --background: #fefae0;
-  --sidebar-background: #ccd5ae;
-  --sidebar-card-background: #e9edc9;
-  --slected-tab: #afb98e;
-  --task-background: #d4a3735e;
-  --task-card-background: #faedcd;
-  --card-darker-background: #d4a373;
+  /* sidebar background, completion circle, buttons */
+  --green: #ccd5ae;
+  /* sidebar card background */
+  --light-green: #e9edc9;
+  /* selected tab */
+  --dark-green: #afb98e;
+  /* task background, creation tab */
+  --cream: #eedab8;
+  /* task card background, input area */
+  --light-cream: #faedcd;
+  /* card darker background? */
+  --dark-cream: #d4a373;
 
   --dark-gray-text: #2e2e2e;
   --lighter-gray-text: #3a3a3a;

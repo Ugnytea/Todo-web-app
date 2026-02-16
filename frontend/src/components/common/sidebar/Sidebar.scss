@@ -3,7 +3,7 @@
   min-width: 183px;
   height: calc(100vh - 2rem);
   padding: 1rem 1rem;
-  background-color: var(--sidebar-background);
+  background-color: var(--green);
   box-shadow: var(--sidebar-shadow);
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@
 }
 
 .card {
-  background-color: var(--sidebar-card-background);
+  background-color: var(--light-green);
   box-shadow: var(--card-shadow);
   height: auto;
   border-radius: var(--corner-rounded);
@@ -34,8 +34,7 @@
     transition: 0.2s;
 
     &:hover {
-      background-color: var(--slected-tab);
-      // transition: 0.2s;
+      background-color: var(--dark-green);
     }
 
     &:first-child:hover {

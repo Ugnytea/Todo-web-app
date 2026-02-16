@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import "./Sidebar.scss";
 import { getAllLists } from "../../../api/apiLists";
-import CreationOverlay from "../creation_overlay/CreationOverlay";
+import { TaskCreationOverlay } from "../index";
 
 function Sidebar() {
   const [lists, setLists] = useState([]);
@@ -21,6 +21,18 @@ function Sidebar() {
       console.error("Failed to load lists");
     }
   };
+
+  useEffect(() => {
+    if (showTaskOverlay || showListOverlay) {
+      document.body.classList.add("overlay-open");
+    } else {
+      document.body.classList.remove("overlay-open");
+    }
+
+    return () => {
+      document.body.classList.remove("overlay-open");
+    };
+  }, [showTaskOverlay, showListOverlay]);
 
   return (
     <>
@@ -51,7 +63,7 @@ function Sidebar() {
       </aside>
 
       {showTaskOverlay && (
-        <CreationOverlay onClose={() => setShowTaskOverlay(false)} />
+        <TaskCreationOverlay onClose={() => setShowTaskOverlay(false)} />
         // <>
         //   <div className="actions">
         //     <button onClick={() => setShowTaskOverlay(false)}>Cancel</button>

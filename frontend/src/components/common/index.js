@@ -1,6 +1,6 @@
 import Completion from "./completion/Completion";
-import CreationOverlay from "./creation_overlay/CreationOverlay";
+import TaskCreationOverlay from "./creation_overlay/task/TaskCreationOverlay";
 import Sidebar from "./sidebar/Sidebar";
 import Star from "./star/Star";
 
-export { Completion, CreationOverlay, Sidebar, Star };
+export { Completion, TaskCreationOverlay, Sidebar, Star };

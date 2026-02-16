@@ -27,7 +27,7 @@
   height: auto;
   min-height: 100px;
   padding: 1rem;
-  background-color: var(--task-background);
+  background-color: var(--cream);
   border-radius: var(--corner-rounded);
   box-shadow: var(--card-shadow);
 
@@ -38,7 +38,7 @@
 
 .task {
   padding: 0.5rem 1rem 0.5rem 1rem;
-  background-color: var(--task-card-background);
+  background-color: var(--light-cream);
   border-radius: var(--corner-rounded);
   box-shadow: var(--card-shadow);
   display: grid;
@@ -59,7 +59,7 @@
 
 .completed-task {
   padding: 0.5rem 1rem 0.5rem 1rem;
-  background-color: var(--task-card-background);
+  background-color: var(--light-cream);
   border-radius: var(--corner-rounded);
   box-shadow: var(--card-shadow);
   display: grid;
