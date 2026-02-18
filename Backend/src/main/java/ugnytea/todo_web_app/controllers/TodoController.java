@@ -33,7 +33,7 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<TaskWithGroup>> getAllTasks () {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t LEFT JOIN TaskList l ON t.Group_id = l.Id ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
             List<TaskWithGroup> tasks = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class));
 
             return ResponseEntity.ok(tasks);

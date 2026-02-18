@@ -4,7 +4,7 @@ import "./Sidebar.scss";
 import { getAllLists } from "../../../api/apiLists";
 import { TaskCreationOverlay } from "../index";
 
-function Sidebar() {
+function Sidebar({ onTaskCreated }) {
   const [lists, setLists] = useState([]);
   const [showTaskOverlay, setShowTaskOverlay] = useState(false);
   const [showListOverlay, setShowListOverlay] = useState(false);
@@ -33,6 +33,11 @@ function Sidebar() {
       document.body.classList.remove("overlay-open");
     };
   }, [showTaskOverlay, showListOverlay]);
+
+  const handleTaskCreated = () => {
+    setShowTaskOverlay(false);
+    onTaskCreated();
+  };
 
   return (
     <>
@@ -63,13 +68,10 @@ function Sidebar() {
       </aside>
 
       {showTaskOverlay && (
-        <TaskCreationOverlay onClose={() => setShowTaskOverlay(false)} />
-        // <>
-        //   <div className="actions">
-        //     <button onClick={() => setShowTaskOverlay(false)}>Cancel</button>
-        //     <button>Create</button>
-        //   </div>
-        // </>
+        <TaskCreationOverlay
+          onClose={() => setShowTaskOverlay(false)}
+          onTaskCreated={handleTaskCreated}
+        />
       )}
     </>
   );
