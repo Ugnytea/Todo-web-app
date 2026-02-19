@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-import "./Sidebar.scss";
 import { getAllLists } from "../../../api/apiLists";
 import { TaskCreationOverlay } from "../index";
+
+import "./Sidebar.scss";
 
 function Sidebar({ onTaskCreated }) {
   const [lists, setLists] = useState([]);
