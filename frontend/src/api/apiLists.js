@@ -17,18 +17,18 @@ export const getAllLists = async () => {
 
 // Create list
 export const createList = async (list) => {
-  const response = await api.put("/create", task);
+  const response = await api.post("/create", list);
   return response.data;
 };
 
 // Update list
 export const updateList = async (list) => {
-  const response = await api.put("/update", task);
+  const response = await api.put("/update", list);
   return response.data;
 };
 
 // Delete specific list
 export const deleteList = async (id) => {
-  const response = await api.put("/delete/${id}");
+  const response = await api.delete("/delete/${id}");
   return response.data;
 };

@@ -1,8 +1,9 @@
-import "./TaskCreationOverlay.scss";
-import { createTask } from "../../../../api/apiTasks";
+import { createTask } from "../../../api/apiTasks";
 
-import { Star } from "../../index";
-import { useEffect, useState } from "react";
+import { Star } from "../index";
+import { useState } from "react";
+
+import "./Overlay.scss";
 
 function TaskCreationOverlay({ onClose, onTaskCreated }) {
   const baseTask = {
@@ -41,20 +42,14 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
     <>
       <div className="backdrop" onClick={onClose}></div>
 
-      <div className="content">
+      <div className="content task-card">
         <h2 className="tab-name">New task</h2>
 
         <div>
           <label htmlFor="title" className="creation-header">
             Title
           </label>
-          <input
-            type="text"
-            id="title"
-            className="title-input"
-            onChange={handleChange}
-            required
-          />
+          <input type="text" id="title" onChange={handleChange} required />
         </div>
         {/* <Star /> */}
         <div>

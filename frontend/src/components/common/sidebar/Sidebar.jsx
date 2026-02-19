@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { getAllLists } from "../../../api/apiLists";
-import { TaskCreationOverlay } from "../index";
+import { TaskCreationOverlay, ListCreationOverlay } from "../index";
 
 import "./Sidebar.scss";
 
@@ -40,6 +40,11 @@ function Sidebar({ onTaskCreated }) {
     onTaskCreated();
   };
 
+  const handleListCreated = () => {
+    setShowListOverlay(false);
+    loadLists();
+  };
+
   return (
     <>
       <aside className="box">
@@ -72,6 +77,13 @@ function Sidebar({ onTaskCreated }) {
         <TaskCreationOverlay
           onClose={() => setShowTaskOverlay(false)}
           onTaskCreated={handleTaskCreated}
+        />
+      )}
+
+      {showListOverlay && (
+        <ListCreationOverlay
+          onClose={() => setShowListOverlay(false)}
+          onListCreated={handleListCreated}
         />
       )}
     </>
