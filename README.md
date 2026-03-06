@@ -20,14 +20,23 @@ It is designed to be simple and accessible from desktop and mobile browsers.
 ## Tech stack
 
 ### Backend
-- Java 
+
+- Java
 - Spring Boot
 - Spring Data JDBC
-- H2 
+- H2
 - Gradle
 
-  [//]: # (- &#40;later PostgreSQL&#41;)
+  [//]: # "- (later PostgreSQL)"
 
 ### Frontend
+
 - React
 - CSS
+
+---
+
+## Run the website
+
+`cd frontend`
+`npm start`
