@@ -23,7 +23,7 @@ export const getAllTasks = async () => {
 
 // Fetch group of tasks tasks
 export const getGroupOfTasks = async (groupId) => {
-  const response = await api.get("/groupOfTasks/${id}");
+  const response = await api.get(`/groupOfTasks/${groupId}`);
   return response.data;
 };
 

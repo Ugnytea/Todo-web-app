@@ -5,7 +5,7 @@ import { TaskCreationOverlay, ListCreationOverlay } from "../index";
 
 import "./Sidebar.scss";
 
-function Sidebar({ onTaskCreated }) {
+function Sidebar({ onTaskCreated, onViewChange }) {
   const [lists, setLists] = useState([]);
   const [showTaskOverlay, setShowTaskOverlay] = useState(false);
   const [showListOverlay, setShowListOverlay] = useState(false);
@@ -48,16 +48,22 @@ function Sidebar({ onTaskCreated }) {
   return (
     <>
       <aside className="box">
-        <h1>Todo app</h1>
+        <h1 onClick={() => onViewChange({ type: "" })}>Todo app</h1>
         <section>
           <div className="title">
             <h2>Tasks</h2>
             <button onClick={() => setShowTaskOverlay(true)}>+</button>
           </div>
           <div className="card">
-            <button>Today</button>
-            <button>Upcoming</button>
-            <button>Important</button>
+            <button onClick={() => onViewChange({ type: "today" })}>
+              Today
+            </button>
+            <button onClick={() => onViewChange({ type: "upcoming" })}>
+              Upcoming
+            </button>
+            <button onClick={() => onViewChange({ type: "important" })}>
+              Important
+            </button>
           </div>
         </section>
         <section>
@@ -67,7 +73,14 @@ function Sidebar({ onTaskCreated }) {
           </div>
           <div className="card">
             {lists.map((list) => (
-              <button key={list.id}>{list.name}</button>
+              <button
+                key={list.id}
+                onClick={() =>
+                  onViewChange({ type: "group", groupId: list.id })
+                }
+              >
+                {list.name}
+              </button>
             ))}
           </div>
         </section>

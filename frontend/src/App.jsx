@@ -1,25 +1,44 @@
 import { useEffect, useState } from "react";
-
 import { Sidebar, AllTasks } from "./components/index.js";
-import { getAllTasks } from "./api/apiTasks.js";
+import { getAllTasks, getGroupOfTasks } from "./api/apiTasks.js";
 
 import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [currentView, setCurrentView] = useState({
+    type: "all",
+    groupId: null,
+  });
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   useEffect(() => {
     const loadTasks = async () => {
       try {
-        const data = await getAllTasks();
+        const data = await getFetchFunction()();
         setTasks(data);
       } catch (error) {
         console.error("Failed to load tasks:", error);
+        setTasks([]);
       }
     };
     loadTasks();
-  }, [refreshTrigger]);
+  }, [refreshTrigger, currentView]);
+
+  const getFetchFunction = () => {
+    switch (currentView.type) {
+      // case "today":
+      //   return getTodaysTasks();
+      // case "important":
+      //   return getImportantTasks();
+      // case "upcoming":
+      //   return getUpcomingTasks();
+      case "group":
+        return () => getGroupOfTasks(currentView.groupId);
+      default:
+        return () => getAllTasks();
+    }
+  };
 
   const handleTasksChange = () => {
     setRefreshTrigger((prev) => prev + 1);
@@ -27,7 +46,10 @@ function App() {
 
   return (
     <div className="container">
-      <Sidebar onTaskCreated={handleTasksChange} />
+      <Sidebar
+        onTaskCreated={handleTasksChange}
+        onViewChange={setCurrentView}
+      />
       <AllTasks tasks={tasks} onTasksChange={handleTasksChange} />
     </div>
   );
