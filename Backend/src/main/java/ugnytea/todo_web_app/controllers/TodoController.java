@@ -19,10 +19,10 @@ public class TodoController {
     JdbcTemplate template;
 
     @GetMapping("/task/{id}")
-    public ResponseEntity<Task> getTask (@PathVariable int id) {
+    public ResponseEntity<TaskWithGroup> getTask (@PathVariable int id) {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE t.Id=?";
-            Task task = template.queryForObject(sql, new BeanPropertyRowMapper<>(Task.class), new Object[]{id});
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE t.Id=?;";
+            TaskWithGroup task = template.queryForObject(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class), new Object[]{id});
 
             return ResponseEntity.ok(task);
         } catch (EmptyResultDataAccessException e) {
