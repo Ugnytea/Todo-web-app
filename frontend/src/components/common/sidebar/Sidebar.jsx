@@ -5,7 +5,7 @@ import { TaskCreationOverlay, ListCreationOverlay } from "../index";
 
 import "./Sidebar.scss";
 
-function Sidebar({ onTaskCreated, onViewChange }) {
+function Sidebar({ view, onTaskCreated, onViewChange }) {
   const [lists, setLists] = useState([]);
   const [showTaskOverlay, setShowTaskOverlay] = useState(false);
   const [showListOverlay, setShowListOverlay] = useState(false);
@@ -55,13 +55,22 @@ function Sidebar({ onTaskCreated, onViewChange }) {
             <button onClick={() => setShowTaskOverlay(true)}>+</button>
           </div>
           <div className="card">
-            <button onClick={() => onViewChange({ type: "today" })}>
+            <button
+              className={view.type === "today" ? "active" : ""}
+              onClick={() => onViewChange({ type: "today" })}
+            >
               Today
             </button>
-            <button onClick={() => onViewChange({ type: "upcoming" })}>
+            <button
+              className={view.type === "upcoming" ? "active" : ""}
+              onClick={() => onViewChange({ type: "upcoming" })}
+            >
               Upcoming
             </button>
-            <button onClick={() => onViewChange({ type: "important" })}>
+            <button
+              className={view.type === "important" ? "active" : ""}
+              onClick={() => onViewChange({ type: "important" })}
+            >
               Important
             </button>
           </div>
@@ -75,6 +84,7 @@ function Sidebar({ onTaskCreated, onViewChange }) {
             {lists.map((list) => (
               <button
                 key={list.id}
+                className={view.groupId === list.id ? "active" : ""}
                 onClick={() =>
                   onViewChange({ type: "group", groupId: list.id })
                 }

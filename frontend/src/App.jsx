@@ -52,6 +52,7 @@ function App() {
   return (
     <div className="container">
       <Sidebar
+        view={currentView}
         onTaskCreated={handleTasksChange}
         onViewChange={setCurrentView}
       />

@@ -49,16 +49,30 @@
 
     &:hover {
       background-color: var(--dark-green);
+
+      &:first-child {
+        margin-top: -0.5rem;
+        padding-top: calc(0.25rem + 0.5rem);
+      }
+
+      &:last-child {
+        margin-bottom: -0.5rem;
+        padding-bottom: calc(0.25rem + 0.5rem);
+      }
     }
 
-    &:first-child:hover {
-      margin-top: -0.5rem;
-      padding-top: calc(0.25rem + 0.5rem);
-    }
+    &.active {
+      background-color: var(--dark-green);
 
-    &:last-child:hover {
-      margin-bottom: -0.5rem;
-      padding-bottom: calc(0.25rem + 0.5rem);
+      &:first-child {
+        margin-top: -0.5rem;
+        padding-top: calc(0.25rem + 0.5rem);
+      }
+
+      &:last-child {
+        margin-bottom: -0.5rem;
+        padding-bottom: calc(0.25rem + 0.5rem);
+      }
     }
   }
 }
