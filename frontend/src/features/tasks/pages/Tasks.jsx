@@ -26,7 +26,7 @@ function Tasks({ tasks, onTasksChange }) {
             </section>
           ))
         ) : (
-          <p>No tasks to display</p>
+          <h3>No tasks to display</h3>
         )}
       </div>
     </div>
