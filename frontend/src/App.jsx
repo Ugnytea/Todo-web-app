@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Sidebar, AllTasks } from "./components/index.js";
 import { getAllTasks, getGroupOfTasks } from "./api/apiTasks.js";
+import {
+  getTodaysTasks,
+  getUpcomingTasks,
+  getImportantTasks,
+} from "./api/apiSpecificTasks.js";
 
 import "./App.css";
 
@@ -27,12 +32,12 @@ function App() {
 
   const getFetchFunction = () => {
     switch (currentView.type) {
-      // case "today":
-      //   return getTodaysTasks();
-      // case "important":
-      //   return getImportantTasks();
-      // case "upcoming":
-      //   return getUpcomingTasks();
+      case "today":
+        return () => getTodaysTasks();
+      case "upcoming":
+        return () => getUpcomingTasks();
+      case "important":
+        return () => getImportantTasks();
       case "group":
         return () => getGroupOfTasks(currentView.groupId);
       default:
