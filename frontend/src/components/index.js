@@ -1,4 +1,3 @@
-import { Sidebar } from "./common/index.js";
-import AllTasks from "./pages/all_tasks/AllTasks";
+import { Sidebar } from "./layout/index";
 
-export { Sidebar, AllTasks };
+export { Sidebar };

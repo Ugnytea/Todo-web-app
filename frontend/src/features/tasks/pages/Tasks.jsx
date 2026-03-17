@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { Completion, Star } from "../components/index.js";
 
-import { Completion, Star } from "../../common/index.js";
+import "./Tasks.scss";
 
-import "./AllTasks.scss";
-
-function AllTasks({ tasks, onTasksChange }) {
+function Tasks({ tasks, onTasksChange }) {
   return (
     <div className="task-container">
       <div className="header">
@@ -35,4 +33,4 @@ function AllTasks({ tasks, onTasksChange }) {
   );
 }
 
-export default AllTasks;
+export default Tasks;

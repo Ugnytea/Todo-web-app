@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { updateTask } from "../../../api/apiTasks";
+import { updateTask } from "../../../../api/apiTasks";
 
 import "./Star.scss";
 

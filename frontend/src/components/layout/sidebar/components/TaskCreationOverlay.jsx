@@ -1,6 +1,6 @@
-import { createTask } from "../../../api/apiTasks";
+import { createTask } from "../../../../api/apiTasks";
 
-import { Star } from "../index";
+import { Star } from "../../../../features/tasks/components/index.js";
 import { useState } from "react";
 
 import "./Overlay.scss";

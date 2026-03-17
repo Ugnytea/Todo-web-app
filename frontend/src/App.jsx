@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Sidebar, AllTasks } from "./components/index.js";
+import { Sidebar } from "./components/index.js";
+import { Tasks } from "./features/index.js";
 import { getAllTasks, getGroupOfTasks } from "./api/apiTasks.js";
 import {
   getTodaysTasks,
@@ -56,7 +57,7 @@ function App() {
         onTaskCreated={handleTasksChange}
         onViewChange={setCurrentView}
       />
-      <AllTasks tasks={tasks} onTasksChange={handleTasksChange} />
+      <Tasks tasks={tasks} onTasksChange={handleTasksChange} />
     </div>
   );
 }

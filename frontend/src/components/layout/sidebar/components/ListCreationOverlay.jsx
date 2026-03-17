@@ -1,4 +1,4 @@
-import { createList } from "../../../api/apiLists";
+import { createList } from "../../../../api/apiLists";
 import "./Overlay.scss";
 
 function ListCreationOverlay({ onClose, onListCreated }) {

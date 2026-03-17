@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { getAllLists } from "../../../api/apiLists";
-import { TaskCreationOverlay, ListCreationOverlay } from "../index";
+import { TaskCreationOverlay, ListCreationOverlay } from "./components/index";
 
 import "./Sidebar.scss";
 
