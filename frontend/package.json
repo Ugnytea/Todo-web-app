@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "backend": "cd ..\\Backend && gradlew.bat bootRun",
+    "backend": "cd ..\\backend && gradlew.bat bootRun",
     "frontend-wait": "wait-on http://localhost:8080/api/todos && npm run dev",
     "start": "concurrently --kill-others \"npm run backend\" \"npm run frontend-wait\""
   },
