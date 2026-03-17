@@ -23,7 +23,7 @@ public class SpecificTaskController {
     @GetMapping("/todays")
     public ResponseEntity<List<TaskWithGroup>> getTodaysTask () {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE t.Due_till = CURRENT_DATE;";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t LEFT JOIN TaskList l ON t.Group_id = l.Id WHERE t.Due_till = CURRENT_DATE ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;;";
             List<TaskWithGroup> task = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class));
 
             return ResponseEntity.ok(task);
@@ -35,7 +35,7 @@ public class SpecificTaskController {
     @GetMapping("/upcoming")
     public ResponseEntity<List<TaskWithGroup>> getUpcomingTasks () {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE t.Due_till BETWEEN CURRENT_DATE AND DATEADD('DAY', 7, CURRENT_DATE);";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t LEFT JOIN TaskList l ON t.Group_id = l.Id WHERE t.Due_till BETWEEN CURRENT_DATE AND DATEADD('DAY', 7, CURRENT_DATE) ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
             List<TaskWithGroup> task = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class));
 
             return ResponseEntity.ok(task);
@@ -47,7 +47,7 @@ public class SpecificTaskController {
     @GetMapping("/important")
     public ResponseEntity<List<TaskWithGroup>> getImportantTasks () {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE t.important;";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t LEFT JOIN TaskList l ON t.Group_id = l.Id WHERE t.important ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
             List<TaskWithGroup> task = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class));
 
             return ResponseEntity.ok(task);

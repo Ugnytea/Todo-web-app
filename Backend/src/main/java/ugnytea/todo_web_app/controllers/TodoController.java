@@ -21,7 +21,7 @@ public class TodoController {
     @GetMapping("/task/{id}")
     public ResponseEntity<TaskWithGroup> getTask (@PathVariable int id) {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE t.Id=?;";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t LEFT JOIN TaskList l ON t.Group_id = l.Id WHERE t.Id=?;";
             TaskWithGroup task = template.queryForObject(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class), new Object[]{id});
 
             return ResponseEntity.ok(task);
@@ -45,7 +45,7 @@ public class TodoController {
     @GetMapping("/groupOfTasks/{id}")
     public ResponseEntity<List<TaskWithGroup>> getGroupOfTasks(@PathVariable int id) {
         try {
-            String sql = "SELECT t.*, l.Name as groupName FROM Task t JOIN TaskList l ON t.Group_id = l.Id WHERE Group_id=? ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
+            String sql = "SELECT t.*, l.Name as groupName FROM Task t LEFT JOIN TaskList l ON t.Group_id = l.Id WHERE Group_id=? ORDER BY Completed, Important DESC, Due_till NULLS LAST, Created_at;";
             List<TaskWithGroup> tasks = template.query(sql, new BeanPropertyRowMapper<>(TaskWithGroup.class), new Object[]{id});
 
             return ResponseEntity.ok(tasks);
