@@ -1,42 +1,60 @@
 # Todo web app
 
-A private application built for personal use and learning purposes.
+Todo web app allows users to create, update and manage their personal todo lists.
+It is designed to be simple and accessible from desktop browser.
 
-The app allows users to log in and create, update and manage their personal todo lists.
-It is designed to be simple and accessible from desktop and mobile browsers.
+---
+
+## Installation and Usage
+
+### Requirements
+
+- Java 17+
+- Node.js (with npm)
+
+### Steps
+
+1. Clone repository:
+
+```bash
+git clone https://github.com/Ugnytea/Todo-web-app.git
+```
+
+2. Navigate to the frontend and run the application:
+
+```bash
+cd Todo-web-app/frontend
+npm install
+npm start
+```
+
+> **Note:** First startup may take 15-30 seconds while the backend initializes.
+
+3. Access the application on `http://localhost:5173`
 
 ---
 
 ## Features
 
-- User authentication with JWT
-- Secure password storage using BCrypt
-- Create, update and delete todos
-- User-specific todo lists
+- Create, read, update and delete tasks
+- Create and delete lists
+- Organize tasks into custom lists
+- Mark tasks as important
+- Set due dates
+- Track completion status
+
+### To be added:
+
+- Missed tasks view 
+- Recurring tasks
+- Task streaks
+- Reorder lists
 - Mobile friendly web interface
 
 ---
 
-## Tech stack
+## Built With
 
-### Backend
+**Backend:** Java, Spring Boot, H2 Database, Gradle
 
-- Java
-- Spring Boot
-- Spring Data JDBC
-- H2
-- Gradle
-
-  [//]: # "- (later PostgreSQL)"
-
-### Frontend
-
-- React
-- CSS
-
----
-
-## Run the website
-
-`cd frontend`
-`npm start`
+**Frontend:** React, Vite, SCSS
