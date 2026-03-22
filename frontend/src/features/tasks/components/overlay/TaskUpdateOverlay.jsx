@@ -3,6 +3,7 @@ import {
   updateTask,
   deleteTask,
 } from "../../../../api/apiTasks";
+import { getAllLists } from "../../../../api/apiLists";
 
 import { Star } from "../../../../features/tasks/components/index.js";
 import { useEffect, useState } from "react";
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 import "./../../../../components/shared/Overlay.scss";
 
 function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
+  const [lists, setLists] = useState([]);
   const [updatedTask, setUpdatedTask] = useState({
     id: "",
     title: "",
@@ -33,7 +35,16 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
         console.error("Failed to load task:", error);
       }
     };
+    const loadLists = async () => {
+      try {
+        const data = await getAllLists();
+        setLists(data);
+      } catch (error) {
+        console.error("Failed to load lists");
+      }
+    };
     loadTask();
+    loadLists();
   }, []);
 
   const handleChange = (e) => {
@@ -107,13 +118,18 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
             <label htmlFor="groupName" className="creation-header">
               List
             </label>
-            <input
-              type="text"
-              id="groupName"
-              value={updatedTask.groupName}
-              className="dropdown"
+            <select
+              id="groupId"
+              value={updatedTask.groupId || ""}
               onChange={handleChange}
-            />
+            >
+              <option value=""></option>
+              {lists.map((list) => (
+                <option key={list.id} value={list.id}>
+                  {list.name}
+                </option>
+              ))}
+            </select>
           </section>
           {/* Due date */}
           <section>

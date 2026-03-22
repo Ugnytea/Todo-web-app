@@ -18,22 +18,27 @@
   border-radius: var(--corner-rounded);
   box-shadow: var(--card-shadow);
   padding: 1rem;
-  //   max-width: 40%;
   width: 100%;
 
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  input {
+  input,
+  select {
     background-color: var(--light-cream);
     border-radius: var(--corner-rounded);
     box-shadow: var(--card-shadow);
     border: none;
-    width: calc(100% - 1rem);
+    width: 100%;
     padding: 0.5rem;
     color: var(--lighter-gray-text);
     outline: none;
+    box-sizing: border-box;
+  }
+
+  select {
+    appearance: none;
   }
 }
 

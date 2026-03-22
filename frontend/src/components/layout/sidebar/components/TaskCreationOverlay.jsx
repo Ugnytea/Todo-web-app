@@ -1,11 +1,14 @@
 import { createTask } from "../../../../api/apiTasks";
+import { getAllLists } from "../../../../api/apiLists";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./../../../shared/Overlay.scss";
 
 function TaskCreationOverlay({ onClose, onTaskCreated }) {
-  const baseTask = {
+  const [lists, setLists] = useState([]);
+
+  const [task, setTask] = useState({
     title: "",
     createdAt: new Date().toISOString().split("T")[0],
     description: null,
@@ -13,9 +16,19 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
     groupId: null,
     important: false,
     completed: false,
-  };
+  });
 
-  const [task, setTask] = useState(baseTask);
+  useEffect(() => {
+    const loadLists = async () => {
+      try {
+        const data = await getAllLists();
+        setLists(data);
+      } catch (error) {
+        console.error("Failed to load lists");
+      }
+    };
+    loadLists();
+  }, []);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -28,7 +41,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
 
   const handleSubmit = async () => {
     try {
-      const createdTask = { ...baseTask, ...task };
+      const createdTask = { ...task };
 
       await createTask(createdTask);
       onTaskCreated();
@@ -68,12 +81,18 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
             <label htmlFor="groupName" className="creation-header">
               List
             </label>
-            <input
-              type="number"
-              id="groupName"
-              className="dropdown"
+            <select
+              id="groupId"
+              value={task.groupId || ""}
               onChange={handleChange}
-            />
+            >
+              <option value=""></option>
+              {lists.map((list) => (
+                <option key={list.id} value={list.id}>
+                  {list.name}
+                </option>
+              ))}
+            </select>
           </section>
           <section>
             <label htmlFor="dueTill" className="creation-header">
