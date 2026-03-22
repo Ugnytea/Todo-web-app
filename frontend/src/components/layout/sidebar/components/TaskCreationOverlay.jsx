@@ -1,9 +1,8 @@
 import { createTask } from "../../../../api/apiTasks";
 
-import { Star } from "../../../../features/tasks/components/index.js";
 import { useState } from "react";
 
-import "./Overlay.scss";
+import "./../../../shared/Overlay.scss";
 
 function TaskCreationOverlay({ onClose, onTaskCreated }) {
   const baseTask = {
@@ -85,8 +84,10 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
         </section>
 
         <section className="create-cancel">
-          <button onClick={handleSubmit}>Create</button>
-          <button type="button" onClick={onClose}>
+          <button id="confirm" onClick={handleSubmit}>
+            Create
+          </button>
+          <button id="cancel" type="button" onClick={onClose}>
             Cancel
           </button>
         </section>

@@ -1,5 +1,5 @@
 import { createList } from "../../../../api/apiLists";
-import "./Overlay.scss";
+import "./../../../shared/Overlay.scss";
 
 function ListCreationOverlay({ onClose, onListCreated }) {
   const handleSubmit = async () => {
@@ -26,8 +26,10 @@ function ListCreationOverlay({ onClose, onListCreated }) {
         </div>
 
         <section className="create-cancel">
-          <button onClick={handleSubmit}>Create</button>
-          <button type="button" onClick={onClose}>
+          <button id="confirm" onClick={handleSubmit}>
+            Create
+          </button>
+          <button id="cancel" type="button" onClick={onClose}>
             Cancel
           </button>
         </section>

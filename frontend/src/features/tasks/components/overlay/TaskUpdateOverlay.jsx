@@ -1,9 +1,13 @@
-import { getSpecificTask, updateTask } from "../../../../api/apiTasks";
+import {
+  getSpecificTask,
+  updateTask,
+  deleteTask,
+} from "../../../../api/apiTasks";
 
 import { Star } from "../../../../features/tasks/components/index.js";
 import { useEffect, useState } from "react";
 
-import "./Overlay.scss";
+import "./../../../../components/shared/Overlay.scss";
 
 function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
   const [updatedTask, setUpdatedTask] = useState({
@@ -52,13 +56,25 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     }
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    try {
+      await deleteTask(taskId);
+      onTaskUpdated();
+    } catch (error) {
+      console.error("Failed to delete task.", error);
+    }
+  };
+
   return (
     <>
       <div className="backdrop" onClick={onClose}></div>
 
       <form className="content task-card">
-        <h2 className="tab-name">New task</h2>
+        <h2 className="tab-name">Update task</h2>
 
+        {/* Title */}
         <div>
           <label htmlFor="title" className="creation-header">
             Title
@@ -71,7 +87,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
             required
           />
         </div>
-        {/* <Star /> */}
+        {/* Description */}
         <div>
           <label htmlFor="description" className="creation-header">
             Description
@@ -86,6 +102,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
         </div>
 
         <section className="compact">
+          {/* List */}
           <section>
             <label htmlFor="groupName" className="creation-header">
               List
@@ -98,6 +115,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
               onChange={handleChange}
             />
           </section>
+          {/* Due date */}
           <section>
             <label htmlFor="dueTill" className="creation-header">
               Due date
@@ -112,9 +130,14 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
         </section>
 
         <section className="create-cancel">
-          <button onClick={handleSubmit}>Update</button>
-          <button type="button" onClick={onClose}>
+          <button id="confirm" onClick={handleSubmit}>
+            Update
+          </button>
+          <button id="cancel" type="button" onClick={onClose}>
             Cancel
+          </button>
+          <button id="delete" type="button" onClick={handleDelete}>
+            Delete
           </button>
         </section>
       </form>

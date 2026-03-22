@@ -25,19 +25,28 @@ body {
   --background: #fefae0;
   /* sidebar background, completion circle, buttons */
   --green: #ccd5ae;
-  /* sidebar card background */
+  /* sidebar card background, confirm button */
   --light-green: #e9edc9;
   /* selected tab */
   --dark-green: #afb98e;
+  /* confirm button hover */
+  --darker-green: #8fa070;
   /* task background, creation tab */
   --cream: #eedab8;
   /* task card background, input area */
   --light-cream: #faedcd;
   /* card darker background? */
   --dark-cream: #d4a373;
+  /*  delete button, delete button hover*/
+  --red: #8c3f2e;
+  /* cancel button */
+  --musty-green: #c8b898;
+  /* cancel button hover */
+  --dark-musty-green: #b8a880;
 
   --dark-gray-text: #2e2e2e;
   --lighter-gray-text: #3a3a3a;
+  --light-text: white;
 
   --corner-rounded: 10px;
 

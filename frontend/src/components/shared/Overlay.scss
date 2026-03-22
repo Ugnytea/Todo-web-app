@@ -68,24 +68,42 @@
 
   button {
     background-color: var(--cream);
-    border-color: var(--light-green);
     border-style: solid;
     border-radius: var(--corner-rounded);
     box-shadow: var(--card-shadow);
-    // padding: 0.25rem 1rem 0.25rem 1rem;
     width: 9rem;
 
     font-size: 15px;
     font-weight: 500;
     font-family: "Poppins";
 
-    &:first-child {
+    &#confirm {
       background-color: var(--light-green);
+      border-color: var(--light-green);
+
+      &:hover {
+        background-color: var(--darker-green);
+        border-color: var(--darker-green);
+        color: var(--light-text);
+      }
     }
 
-    &:hover {
-      background-color: var(--dark-green);
-      border-color: var(--dark-green);
+    &#delete {
+      border-color: var(--red);
+      color: var(--red);
+
+      &:hover {
+        background-color: var(--red);
+        color: var(--light-text);
+      }
+    }
+
+    &#cancel {
+      border-color: var(--musty-green);
+
+      &:hover {
+        border-color: var(--dark-musty-green);
+      }
     }
   }
 }
