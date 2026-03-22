@@ -5,7 +5,9 @@ import { updateTask } from "../../../../api/apiTasks";
 import "./Completion.scss";
 
 function Completion({ task, onUpdate }) {
-  const toggleComplete = async () => {
+  const toggleComplete = async (e) => {
+    e.stopPropagation();
+
     try {
       const updatedTask = {
         ...task,

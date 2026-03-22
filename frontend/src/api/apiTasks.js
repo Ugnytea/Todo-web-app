@@ -11,7 +11,7 @@ const api = axios.create({
 
 // Fetch specific tasks by ID
 export const getSpecificTask = async (id) => {
-  const response = await api.get("/task/${id}");
+  const response = await api.get(`/task/${id}`);
   return response.data;
 };
 
@@ -41,6 +41,6 @@ export const updateTask = async (updatedTask) => {
 
 // Delete specific tasks
 export const deleteTask = async (id) => {
-  const response = await api.delete("/delete/${id}");
+  const response = await api.delete(`/delete/${id}`);
   return response.data;
 };

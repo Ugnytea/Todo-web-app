@@ -5,8 +5,8 @@ import { updateTask } from "../../../../api/apiTasks";
 import "./Star.scss";
 
 function Star({ task, onUpdate }) {
-  const toggleImportance = async () => {
-    console.log("clicked", task.id);
+  const toggleImportance = async (e) => {
+    e.stopPropagation();
     try {
       const updatedTask = {
         ...task,

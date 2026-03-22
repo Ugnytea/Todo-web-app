@@ -1,0 +1,97 @@
+.backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  overflow-y: hidden;
+
+  background-color: var(--cream);
+  border-radius: var(--corner-rounded);
+  box-shadow: var(--card-shadow);
+  padding: 1rem;
+  //   max-width: 40%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  input {
+    background-color: var(--light-cream);
+    border-radius: var(--corner-rounded);
+    box-shadow: var(--card-shadow);
+    border: none;
+    width: calc(100% - 1rem);
+    padding: 0.5rem;
+    color: var(--lighter-gray-text);
+    outline: none;
+  }
+}
+
+.list-card {
+  max-width: 20%;
+}
+
+.task-card {
+  max-width: 40%;
+}
+
+.tab-name {
+  text-align: center;
+  font-weight: 900;
+}
+
+.creation-header {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--lighter-gray-text);
+  padding-left: var(--corner-rounded);
+  user-select: none;
+}
+
+.create-cancel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+
+  button {
+    background-color: var(--cream);
+    border-color: var(--light-green);
+    border-style: solid;
+    border-radius: var(--corner-rounded);
+    box-shadow: var(--card-shadow);
+    // padding: 0.25rem 1rem 0.25rem 1rem;
+    width: 9rem;
+
+    font-size: 15px;
+    font-weight: 500;
+    font-family: "Poppins";
+
+    &:first-child {
+      background-color: var(--light-green);
+    }
+
+    &:hover {
+      background-color: var(--dark-green);
+      border-color: var(--dark-green);
+    }
+  }
+}
+
+.compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
