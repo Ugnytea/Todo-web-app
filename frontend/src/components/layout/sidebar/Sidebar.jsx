@@ -51,7 +51,7 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
         <h1 onClick={() => onViewChange({ type: "" })}>Todo app</h1>
         <section>
           <div className="title">
-            <h2>Tasks</h2>
+            <h2 onClick={() => onViewChange({ type: "" })}>Tasks</h2>
             <button onClick={() => setShowTaskOverlay(true)}>+</button>
           </div>
           <div className="card">
