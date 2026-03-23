@@ -1,5 +1,7 @@
 # Todo web app
 
+> **Status:** Active development - work in progress
+
 Todo web app allows users to create, update and manage their personal todo lists.
 It is designed to be simple and accessible from desktop browser.
 
@@ -37,7 +39,7 @@ npm start
 ## Features
 
 - Create, read, update and delete tasks
-- Create and delete lists
+- Create lists
 - Organize tasks into custom lists
 - Mark tasks as important
 - Set due dates
@@ -45,10 +47,9 @@ npm start
 
 ### To be added:
 
+- Delete lists
 - Missed tasks view 
 - Recurring tasks
-- Task streaks
-- Reorder lists
 - Mobile friendly web interface
 
 ---
