@@ -18,6 +18,18 @@ public class ListController {
     @Autowired
     JdbcTemplate template;
 
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<TaskList>> getList(@PathVariable int id) {
+        try {
+            String sql = "SELECT * FROM TaskList  WHERE Id=?;";
+            List<TaskList> list = template.query(sql, new BeanPropertyRowMapper<>(TaskList.class), new Object[]{id});
+
+            return ResponseEntity.ok(list);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping
     public ResponseEntity<List<TaskList>> getAllLists() {
         try {

@@ -9,6 +9,12 @@ const api = axios.create({
   },
 });
 
+// Fetch specific tasks by ID
+export const getList = async (id) => {
+  const response = await api.get(`/list/${id}`);
+  return response.data;
+};
+
 // Fetch all lists
 export const getAllLists = async () => {
   const response = await api.get("");
