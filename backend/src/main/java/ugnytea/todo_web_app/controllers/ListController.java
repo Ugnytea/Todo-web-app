@@ -19,10 +19,10 @@ public class ListController {
     JdbcTemplate template;
 
     @GetMapping("/list/{id}")
-    public ResponseEntity<List<TaskList>> getList(@PathVariable int id) {
+    public ResponseEntity<TaskList> getList(@PathVariable int id) {
         try {
             String sql = "SELECT * FROM TaskList  WHERE Id=?;";
-            List<TaskList> list = template.query(sql, new BeanPropertyRowMapper<>(TaskList.class), new Object[]{id});
+            TaskList list = template.queryForObject(sql, new BeanPropertyRowMapper<>(TaskList.class), new Object[]{id});
 
             return ResponseEntity.ok(list);
         } catch (EmptyResultDataAccessException e) {
@@ -63,7 +63,7 @@ public class ListController {
             params.add(list.getName());
             params.add(list.getId());
 
-            template.update(sql, params);
+            template.update(sql, params.toArray());
 
             return ResponseEntity.ok("List updated successfully!");
         } catch (Exception e) {

@@ -14,7 +14,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
   useEffect(() => {
     const loadList = async () => {
       try {
-        const data = await getList(ListId);
+        const data = await getList(listId);
         setUpdatedList({
           id: data.id || "",
           name: data.name || "",
@@ -40,7 +40,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
     e.preventDefault();
 
     try {
-      await updateList(updateList);
+      await updateList(updatedList);
       onListUpdated();
     } catch (error) {
       console.error("Failed to update list.", error);
@@ -49,7 +49,6 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-
     try {
       await deleteList(listId);
       onListUpdated();
@@ -67,12 +66,12 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
 
         {/* Title */}
         <div>
-          <label htmlFor="title" className="creation-header">
+          <label htmlFor="name" className="creation-header">
             List name
           </label>
           <input
             type="text"
-            id="title"
+            id="name"
             value={updatedList.name}
             onChange={handleChange}
             required

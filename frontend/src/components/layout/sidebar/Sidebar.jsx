@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 
 import { getAllLists } from "../../../api/apiLists";
-import { TaskCreationOverlay, ListCreationOverlay } from "./components/index";
+import {
+  TaskCreationOverlay,
+  ListUpdateOverlay,
+  ListCreationOverlay,
+} from "./components/index";
 
 import "./Sidebar.scss";
 
@@ -9,7 +13,9 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
   const [lists, setLists] = useState([]);
   const [showTaskOverlay, setShowTaskOverlay] = useState(false);
   const [showListOverlay, setShowListOverlay] = useState(false);
+  const [showListUpdateOverlay, setShowListUpdateOverlay] = useState(false);
 
+  const [selectedList, setSelectedList] = useState(false);
   useEffect(() => {
     loadLists();
   }, []);
@@ -33,7 +39,7 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
     return () => {
       document.body.classList.remove("overlay-open");
     };
-  }, [showTaskOverlay, showListOverlay]);
+  }, [showTaskOverlay, showListOverlay, showListUpdateOverlay]);
 
   const handleTaskCreated = () => {
     setShowTaskOverlay(false);
@@ -45,8 +51,18 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
     loadLists();
   };
 
+  const handleListUpdate = () => {
+    setShowListUpdateOverlay(false);
+    loadLists();
+  };
+
+  const handleTaskClick = (list) => {
+    setSelectedList(list.id);
+    setShowListUpdateOverlay(true);
+  };
+
   return (
-    <>
+    <div className="sidebar">
       <aside className="box">
         <h1 onClick={() => onViewChange({ type: "" })}>Todo app</h1>
         <section>
@@ -82,15 +98,26 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
           </div>
           <div className="card">
             {lists.map((list) => (
-              <button
+              <div
                 key={list.id}
-                className={view.groupId === list.id ? "active" : ""}
-                onClick={() =>
-                  onViewChange({ type: "group", groupId: list.id })
+                className={
+                  view.groupId === list.id ? "compact active" : "compact"
                 }
               >
-                {list.name}
-              </button>
+                <button
+                  onClick={() =>
+                    onViewChange({ type: "group", groupId: list.id })
+                  }
+                >
+                  {list.name}
+                </button>
+                <img
+                  src="./public/icons/pencil.png"
+                  alt="list editing"
+                  className="edit"
+                  onClick={() => handleTaskClick(list)}
+                />
+              </div>
             ))}
           </div>
         </section>
@@ -109,7 +136,15 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
           onListCreated={handleListCreated}
         />
       )}
-    </>
+
+      {showListUpdateOverlay && (
+        <ListUpdateOverlay
+          listId={selectedList}
+          onClose={() => setShowListUpdateOverlay(false)}
+          onListUpdated={handleListUpdate}
+        />
+      )}
+    </div>
   );
 }
 

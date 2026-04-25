@@ -9,7 +9,7 @@ const api = axios.create({
   },
 });
 
-// Fetch specific tasks by ID
+// Fetch specific list by ID
 export const getList = async (id) => {
   const response = await api.get(`/list/${id}`);
   return response.data;
@@ -35,6 +35,6 @@ export const updateList = async (list) => {
 
 // Delete specific list
 export const deleteList = async (id) => {
-  const response = await api.delete("/delete/${id}");
+  const response = await api.delete(`/delete/${id}`);
   return response.data;
 };
