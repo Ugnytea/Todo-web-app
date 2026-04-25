@@ -12,7 +12,7 @@ function ListCreationOverlay({ onClose, onListCreated }) {
   };
 
   return (
-    <>
+    <div className="overlay">
       <div className="backdrop" onClick={onClose}></div>
 
       <div className="content list-card">
@@ -34,7 +34,7 @@ function ListCreationOverlay({ onClose, onListCreated }) {
           </button>
         </section>
       </div>
-    </>
+    </div>
   );
 }
 

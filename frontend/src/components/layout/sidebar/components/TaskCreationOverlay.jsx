@@ -51,7 +51,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
   };
 
   return (
-    <>
+    <div className="overlay">
       <div className="backdrop" onClick={onClose}></div>
 
       <div className="content task-card">
@@ -82,7 +82,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
               List
             </label>
             <select
-              id="groupId"
+              id="groupName"
               value={task.groupId || ""}
               onChange={handleChange}
             >
@@ -111,7 +111,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
           </button>
         </section>
       </div>
-    </>
+    </div>
   );
 }
 

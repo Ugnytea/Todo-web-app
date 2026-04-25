@@ -79,7 +79,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
   };
 
   return (
-    <>
+    <div className="overlay">
       <div className="backdrop" onClick={onClose}></div>
 
       <form className="content task-card">
@@ -119,7 +119,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
               List
             </label>
             <select
-              id="groupId"
+              id="groupName"
               value={updatedTask.groupId || ""}
               onChange={handleChange}
             >
@@ -157,7 +157,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           </button>
         </section>
       </form>
-    </>
+    </div>
   );
 }
 
