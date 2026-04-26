@@ -78,11 +78,11 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
 
         <section className="compact">
           <section>
-            <label htmlFor="groupName" className="input-header">
+            <label htmlFor="groupId" className="input-header">
               List
             </label>
             <select
-              id="groupName"
+              id="groupId"
               value={task.groupId || ""}
               onChange={handleChange}
             >

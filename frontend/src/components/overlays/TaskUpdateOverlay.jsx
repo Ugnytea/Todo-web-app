@@ -116,11 +116,11 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
         <section className="compact">
           {/* List */}
           <section>
-            <label htmlFor="groupName" className="input-header">
+            <label htmlFor="groupId" className="input-header">
               List
             </label>
             <select
-              id="groupName"
+              id="groupId"
               value={updatedTask.groupId || ""}
               onChange={handleChange}
             >
