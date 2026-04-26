@@ -4,6 +4,7 @@
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 999;
 
   .backdrop {
     width: 100vw;
@@ -12,17 +13,13 @@
   }
 
   .content {
+    z-index: 1000;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1000;
     overflow-y: hidden;
 
-    background-color: var(--card-main);
-    border-radius: var(--corner-rounded);
-    box-shadow: var(--card-shadow);
-    padding: 1rem;
     width: 100%;
 
     display: flex;
@@ -39,28 +36,27 @@
       padding: 0.5rem;
       color: var(--text-secondary);
       outline: none;
-      box-sizing: border-box;
     }
 
     select {
       appearance: none;
     }
+
+    &#list {
+      max-width: 300px;
+    }
+
+    &#task {
+      max-width: 500px;
+    }
   }
 
-  .list-card {
-    max-width: 20%;
-  }
-
-  .task-card {
-    max-width: 40%;
-  }
-
-  .tab-name {
+  .tab-title {
     text-align: center;
     font-weight: 900;
   }
 
-  .creation-header {
+  .input-header {
     font-family: "Inter";
     font-weight: 600;
     font-size: 15px;
@@ -69,7 +65,7 @@
     user-select: none;
   }
 
-  .create-cancel {
+  .btn-area {
     display: flex;
     flex-direction: row;
     justify-content: center;

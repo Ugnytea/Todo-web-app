@@ -15,17 +15,17 @@ function ListCreationOverlay({ onClose, onListCreated }) {
     <div className="overlay">
       <div className="backdrop" onClick={onClose}></div>
 
-      <div className="content list-card">
-        <h2 className="tab-name">New list</h2>
+      <div id="list" className="content card">
+        <h2 className="tab-title">New list</h2>
 
         <div>
-          <label htmlFor="list-name" className="creation-header">
+          <label htmlFor="list-name" className="input-header">
             List name
           </label>
           <input type="text" id="list-name" required />
         </div>
 
-        <section className="create-cancel">
+        <section className="btn-area">
           <button id="confirm" onClick={handleSubmit}>
             Create
           </button>

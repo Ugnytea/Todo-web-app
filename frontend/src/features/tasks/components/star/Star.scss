@@ -5,10 +5,7 @@
   align-self: center;
   user-select: none;
 
-  &:hover {
-    content: url(/icons/star-filled.png);
-  }
-
+  &:hover,
   &.active {
     content: url(/icons/star-filled.png);
   }

@@ -32,19 +32,19 @@ function Tasks({ tasks, onTasksChange }) {
 
   return (
     <>
-      <div className="task-container">
+      <div className="task">
         <div className="header">
           <h2>Tasks</h2>
           <h3>Due date</h3>
           <h3>Lists</h3>
         </div>
 
-        <div className="task-box card">
+        <div className="box card">
           {tasks.length > 0 ? (
             tasks.map((task) => (
               <section
                 key={task.id}
-                className={task.completed ? "completed-task" : "task"}
+                className={`info card ${task.completed ? "completed" : ""}`}
                 onClick={() => handleTaskClick(task)}
               >
                 <Completion task={task} onUpdate={onTasksChange} />

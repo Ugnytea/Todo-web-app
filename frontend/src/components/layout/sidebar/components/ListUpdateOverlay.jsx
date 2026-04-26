@@ -61,12 +61,12 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
     <div className="overlay">
       <div className="backdrop" onClick={onClose}></div>
 
-      <form className="content task-card">
-        <h2 className="tab-name">Update list</h2>
+      <form id="task" className="content card">
+        <h2 className="tab-title">Update list</h2>
 
         {/* Title */}
         <div>
-          <label htmlFor="name" className="creation-header">
+          <label htmlFor="name" className="input-header">
             List name
           </label>
           <input
@@ -78,7 +78,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
           />
         </div>
 
-        <section className="create-cancel">
+        <section className="btn-area">
           <button id="confirm" onClick={handleSubmit}>
             Update
           </button>

@@ -82,12 +82,12 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     <div className="overlay">
       <div className="backdrop" onClick={onClose}></div>
 
-      <form className="content task-card">
-        <h2 className="tab-name">Update task</h2>
+      <form id="task" className="content card">
+        <h2 className="tab-title">Update task</h2>
 
         {/* Title */}
         <div>
-          <label htmlFor="title" className="creation-header">
+          <label htmlFor="title" className="input-header">
             Title
           </label>
           <input
@@ -100,7 +100,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
         </div>
         {/* Description */}
         <div>
-          <label htmlFor="description" className="creation-header">
+          <label htmlFor="description" className="input-header">
             Description
           </label>
           <input
@@ -115,7 +115,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
         <section className="compact">
           {/* List */}
           <section>
-            <label htmlFor="groupName" className="creation-header">
+            <label htmlFor="groupName" className="input-header">
               List
             </label>
             <select
@@ -133,7 +133,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           </section>
           {/* Due date */}
           <section>
-            <label htmlFor="dueTill" className="creation-header">
+            <label htmlFor="dueTill" className="input-header">
               Due date
             </label>
             <input
@@ -145,7 +145,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           </section>
         </section>
 
-        <section className="create-cancel">
+        <section className="btn-area">
           <button id="confirm" onClick={handleSubmit}>
             Update
           </button>

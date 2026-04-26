@@ -54,18 +54,18 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
     <div className="overlay">
       <div className="backdrop" onClick={onClose}></div>
 
-      <div className="content task-card">
-        <h2 className="tab-name">New task</h2>
+      <div id="task" className="content card">
+        <h2 className="tab-title">New task</h2>
 
         <div>
-          <label htmlFor="title" className="creation-header">
+          <label htmlFor="title" className="input-header">
             Title
           </label>
           <input type="text" id="title" onChange={handleChange} required />
         </div>
         {/* <Star /> */}
         <div>
-          <label htmlFor="description" className="creation-header">
+          <label htmlFor="description" className="input-header">
             Description
           </label>
           <input
@@ -78,7 +78,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
 
         <section className="compact">
           <section>
-            <label htmlFor="groupName" className="creation-header">
+            <label htmlFor="groupName" className="input-header">
               List
             </label>
             <select
@@ -95,14 +95,14 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
             </select>
           </section>
           <section>
-            <label htmlFor="dueTill" className="creation-header">
+            <label htmlFor="dueTill" className="input-header">
               Due date
             </label>
             <input type="date" id="dueTill" onChange={handleChange} />
           </section>
         </section>
 
-        <section className="create-cancel">
+        <section className="btn-area">
           <button id="confirm" onClick={handleSubmit}>
             Create
           </button>
