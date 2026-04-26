@@ -1,14 +1,10 @@
-import {
-  getSpecificTask,
-  updateTask,
-  deleteTask,
-} from "../../../../api/apiTasks";
-import { getAllLists } from "../../../../api/apiLists";
+import { getSpecificTask, updateTask, deleteTask } from "../../api/apiTasks";
+import { getAllLists } from "../../api/apiLists";
 
-import { Star } from "../../../../features/tasks/components/index.js";
+import { Star } from "../../features/tasks/components/index.js";
 import { useEffect, useState } from "react";
 
-import "./../../../../components/shared/Overlay.scss";
+import "./Overlay.scss";
 
 function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
   const [lists, setLists] = useState([]);
@@ -17,6 +13,8 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     title: "",
     description: "",
     dueTill: "",
+    important: "",
+    completed: "",
     groupName: "",
   });
 
@@ -29,12 +27,15 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           title: data.title || "",
           description: data.description || "",
           dueTill: data.dueTill || "",
+          important: data.important || "false",
+          completed: data.completed || "false",
           groupName: data.groupName || "",
         });
       } catch (error) {
         console.error("Failed to load task:", error);
       }
     };
+
     const loadLists = async () => {
       try {
         const data = await getAllLists();

@@ -1,5 +1,5 @@
-import { createList } from "../../../../api/apiLists";
-import "./../../../shared/Overlay.scss";
+import { createList } from "../../api/apiLists";
+import "./Overlay.scss";
 
 function ListCreationOverlay({ onClose, onListCreated }) {
   const handleSubmit = async () => {

@@ -1,8 +1,8 @@
-import { getList, updateList, deleteList } from "../../../../api/apiLists";
+import { getList, updateList, deleteList } from "../../api/apiLists";
 
 import { useEffect, useState } from "react";
 
-import "./../../../shared/Overlay.scss";
+import "./Overlay.scss";
 
 function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
   const [lists, setLists] = useState([]);

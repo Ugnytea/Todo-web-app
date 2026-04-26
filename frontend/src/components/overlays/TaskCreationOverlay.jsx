@@ -1,9 +1,9 @@
-import { createTask } from "../../../../api/apiTasks";
-import { getAllLists } from "../../../../api/apiLists";
+import { createTask } from "../../api/apiTasks";
+import { getAllLists } from "../../api/apiLists";
 
 import { useEffect, useState } from "react";
 
-import "./../../../shared/Overlay.scss";
+import "./Overlay.scss";
 
 function TaskCreationOverlay({ onClose, onTaskCreated }) {
   const [lists, setLists] = useState([]);

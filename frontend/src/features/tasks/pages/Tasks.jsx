@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Completion, TaskUpdateOverlay, Star } from "../components/index.js";
+import { Completion, Star } from "../components/index.js";
+import { TaskUpdateOverlay } from "../../../components/overlays/index.js";
 
 import "./Tasks.scss";
 

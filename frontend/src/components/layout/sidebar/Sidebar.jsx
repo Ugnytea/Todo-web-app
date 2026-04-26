@@ -5,7 +5,7 @@ import {
   TaskCreationOverlay,
   ListUpdateOverlay,
   ListCreationOverlay,
-} from "./components/index";
+} from "../../overlays/index";
 
 import "./Sidebar.scss";
 
