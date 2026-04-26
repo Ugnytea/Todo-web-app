@@ -70,7 +70,7 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
             <h2 onClick={() => onViewChange({ type: "" })}>Tasks</h2>
             <button onClick={() => setShowTaskOverlay(true)}>+</button>
           </div>
-          <div className="card">
+          <div className="sidebar-card">
             <button
               className={view.type === "today" ? "active" : ""}
               onClick={() => onViewChange({ type: "today" })}
@@ -96,7 +96,7 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
             <h2>Lists</h2>
             <button onClick={() => setShowListOverlay(true)}>+</button>
           </div>
-          <div className="card">
+          <div className="sidebar-card">
             {lists.map((list) => (
               <div
                 key={list.id}

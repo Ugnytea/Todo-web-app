@@ -19,7 +19,7 @@
     z-index: 1000;
     overflow-y: hidden;
 
-    background-color: var(--cream);
+    background-color: var(--card-main);
     border-radius: var(--corner-rounded);
     box-shadow: var(--card-shadow);
     padding: 1rem;
@@ -31,13 +31,13 @@
 
     input,
     select {
-      background-color: var(--light-cream);
+      background-color: var(--card-secondary);
       border-radius: var(--corner-rounded);
       box-shadow: var(--card-shadow);
       border: none;
       width: 100%;
       padding: 0.5rem;
-      color: var(--lighter-gray-text);
+      color: var(--text-secondary);
       outline: none;
       box-sizing: border-box;
     }
@@ -64,7 +64,7 @@
     font-family: "Inter";
     font-weight: 600;
     font-size: 15px;
-    color: var(--lighter-gray-text);
+    color: var(--text-secondary);
     padding-left: var(--corner-rounded);
     user-select: none;
   }
@@ -77,42 +77,31 @@
     align-items: center;
 
     button {
-      background-color: var(--cream);
-      border-style: solid;
-      border-radius: var(--corner-rounded);
-      box-shadow: var(--card-shadow);
-      width: 9rem;
-
-      font-size: 15px;
-      font-weight: 500;
-      font-family: "Poppins";
-
       &#confirm {
-        background-color: var(--light-green);
-        border-color: var(--light-green);
+        background-color: var(--sidebar-card);
+        border-color: var(--sidebar-card);
 
         &:hover {
-          background-color: var(--darker-green);
-          border-color: var(--darker-green);
-          color: var(--light-text);
+          background-color: var(--sidebar-selected);
+          border-color: var(--sidebar-selected);
         }
       }
 
       &#delete {
-        border-color: var(--red);
-        color: var(--red);
+        border-color: var(--button-delete);
+        color: var(--button-delete);
 
         &:hover {
-          background-color: var(--red);
-          color: var(--light-text);
+          background-color: var(--button-delete);
+          color: var(--text-tertiary);
         }
       }
 
       &#cancel {
-        border-color: var(--musty-green);
+        border-color: var(--button-cancel);
 
         &:hover {
-          border-color: var(--dark-musty-green);
+          border-color: var(--button-cancel-hover);
         }
       }
     }

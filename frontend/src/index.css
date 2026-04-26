@@ -7,46 +7,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
-
 :root {
   /* page background */
   --background: #fefae0;
   /* sidebar background, completion circle, buttons */
-  --green: #ccd5ae;
-  /* sidebar card background, confirm button */
-  --light-green: #e9edc9;
-  /* selected tab */
-  --dark-green: #afb98e;
-  /* confirm button hover */
-  --darker-green: #8fa070;
-  /* task background, creation tab */
-  --cream: #eedab8;
-  /* task card background, input area */
-  --light-cream: #faedcd;
-  /* card darker background? */
-  --dark-cream: #d4a373;
-  /*  delete button, delete button hover*/
-  --red: #8c3f2e;
-  /* cancel button */
-  --musty-green: #c8b898;
-  /* cancel button hover */
-  --dark-musty-green: #b8a880;
+  --background-secondary: #ccd5ae;
 
-  --dark-gray-text: #2e2e2e;
-  --lighter-gray-text: #3a3a3a;
-  --light-text: white;
+  /* task background, creation tab */
+  --card-main: #eedab8;
+  /* task card background, input area */
+  --card-secondary: #faedcd;
+
+  /* sidebar card background, confirm button */
+  --sidebar-card: #e9edc9;
+  /* selected tab, confirm button hover */
+  --sidebar-selected: #afb98e;
+
+  /*  delete button, delete button hover*/
+  --button-delete: #8c3f2e;
+  /* cancel button */
+  --button-cancel: #c8b898;
+  /* cancel button hover */
+  --button-cancel-hover: #b8a880;
+
+  /* Main text color */
+  --text-main: #000000;
+  /* Input text, input label, h3 */
+  --text-secondary: #3a3a3a;
+  /* Confirm button hover text */
+  --text-tertiary: white;
 
   --corner-rounded: 10px;
 
@@ -59,13 +48,14 @@ h1 {
   font-size: 38px;
   margin: 0;
   user-select: none;
+  color: var(--text-main);
 }
 
 h2 {
   font-family: "Poppins";
   font-weight: 500;
   font-size: 24px;
-  color: var(--dark-gray-text);
+  color: var(--text-main);
   margin: 0;
   user-select: none;
 }
@@ -74,7 +64,27 @@ h3 {
   font-family: "Inter";
   font-weight: 600;
   font-size: 15px;
-  color: var(--lighter-gray-text);
+  color: var(--text-secondary);
   margin: 0;
   user-select: none;
+}
+
+button {
+  background-color: var(--card-main);
+  border-style: solid;
+  border-radius: var(--corner-rounded);
+  box-shadow: var(--card-shadow);
+  width: 9rem;
+
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Poppins";
+  cursor: pointer;
+}
+
+.card {
+  background-color: var(--card-main);
+  border-radius: var(--corner-rounded);
+  box-shadow: var(--card-shadow);
+  padding: 1rem;
 }

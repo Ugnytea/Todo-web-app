@@ -1,6 +1,6 @@
 .sidebar {
   .box {
-    background-color: var(--green);
+    background-color: var(--background-secondary);
     box-shadow: var(--sidebar-shadow);
     width: calc(250px - 2rem);
     min-width: 105px;
@@ -24,7 +24,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--light-green);
+      background: var(--sidebar-card);
       border-radius: 10px;
     }
   }
@@ -35,7 +35,7 @@
 
     &:hover,
     &.active {
-      background-color: var(--dark-green);
+      background-color: var(--sidebar-selected);
 
       &:first-child {
         margin-top: -0.5rem;
@@ -48,22 +48,23 @@
     }
   }
 
-  .card {
-    background-color: var(--light-green);
+  .sidebar-card {
+    background-color: var(--sidebar-card);
     box-shadow: var(--card-shadow);
     height: auto;
     border-radius: var(--corner-rounded);
     display: flex;
     flex-direction: column;
-    padding: 0.25rem 0 0.25rem;
+    padding: 0.25rem 0;
     overflow: hidden;
 
     button {
       @include list-item;
-      font-family: "Poppins";
-      font-size: 15px;
       background-color: inherit;
       border: none;
+      box-shadow: none;
+      width: 100%;
+      border-radius: 0;
       padding: 0.25rem 0 0.25rem 1rem;
       text-align: left;
       transition: 0.2s;
@@ -107,15 +108,13 @@
 
     button {
       background-color: inherit;
+      box-shadow: none;
       border: none;
-
-      font-family: "Poppins";
-      font-weight: 500;
+      width: auto;
       font-size: 24px;
-      color: var(--dark-gray-text);
+      color: var(--text-main);
       margin: 0;
       padding: 0;
-      cursor: pointer;
     }
   }
 }

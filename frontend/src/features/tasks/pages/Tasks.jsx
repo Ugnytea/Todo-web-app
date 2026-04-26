@@ -39,7 +39,7 @@ function Tasks({ tasks, onTasksChange }) {
           <h3>Lists</h3>
         </div>
 
-        <div className="task-box">
+        <div className="task-box card">
           {tasks.length > 0 ? (
             tasks.map((task) => (
               <section

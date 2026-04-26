@@ -17,7 +17,7 @@
   h3 {
     font-family: "Poppins";
     gap: 1rem;
-    color: var(--dark-gray-text);
+    color: var(--text-main);
     text-align: center;
   }
 }
@@ -25,10 +25,6 @@
 .task-box {
   width: auto;
   height: auto;
-  padding: 1rem;
-  background-color: var(--cream);
-  border-radius: var(--corner-rounded);
-  box-shadow: var(--card-shadow);
 
   display: flex;
   flex-direction: column;
@@ -37,7 +33,7 @@
 
 .task {
   padding: 0.5rem 1rem 0.5rem 1rem;
-  background-color: var(--light-cream);
+  background-color: var(--card-secondary);
   border-radius: var(--corner-rounded);
   box-shadow: var(--card-shadow);
   display: grid;
@@ -58,7 +54,7 @@
 
 .completed-task {
   padding: 0.5rem 1rem 0.5rem 1rem;
-  background-color: var(--light-cream);
+  background-color: var(--card-secondary);
   border-radius: var(--corner-rounded);
   box-shadow: var(--card-shadow);
   display: grid;
