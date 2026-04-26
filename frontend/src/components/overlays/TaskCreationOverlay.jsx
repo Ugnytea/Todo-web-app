@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { createTask } from "../../api/apiTasks";
 import { getAllLists } from "../../api/apiLists";
 
-import { useEffect, useState } from "react";
+import { unsavedChanges } from "./confirmation/unsavedChanges";
 
 import "./Overlay.scss";
 
@@ -50,9 +51,17 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
     }
   };
 
+  // Confirm cancel if any changes where made, otherwise just close
+  const isDirty =
+    task.title !== "" ||
+    task.description !== null ||
+    task.groupId !== null ||
+    task.dueTill !== null;
+  const handleSafeClose = unsavedChanges(isDirty, onClose);
+
   return (
     <div className="overlay">
-      <div className="backdrop" onClick={onClose}></div>
+      <div className="backdrop" onClick={handleSafeClose}></div>
 
       <div id="task" className="content card">
         <h2 className="tab-title">New task</h2>
@@ -106,7 +115,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
           <button id="confirm" onClick={handleSubmit}>
             Create
           </button>
-          <button id="cancel" type="button" onClick={onClose}>
+          <button id="cancel" type="button" onClick={handleSafeClose}>
             Cancel
           </button>
         </section>

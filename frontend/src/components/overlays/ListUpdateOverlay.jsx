@@ -1,11 +1,13 @@
-import { getList, updateList, deleteList } from "../../api/apiLists";
-
 import { useEffect, useState } from "react";
+import { getList, updateList, deleteList } from "../../api/apiLists";
+import { unsavedChanges } from "./confirmation/unsavedChanges.jsx";
+import { deletionConfirmation } from "./confirmation/deletionConfirmation.jsx";
 
 import "./Overlay.scss";
 
 function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
   const [lists, setLists] = useState([]);
+  const [originalList, setOriginalList] = useState(null);
   const [updatedList, setUpdatedList] = useState({
     id: "",
     name: "",
@@ -15,17 +17,20 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
     const loadList = async () => {
       try {
         const data = await getList(listId);
-        setUpdatedList({
+        const formattedData = {
           id: data.id || "",
           name: data.name || "",
-        });
+        };
+
+        setUpdatedList(formattedData);
+        setOriginalList(formattedData);
       } catch (error) {
         console.error("Failed to load list:", error);
       }
     };
 
     loadList();
-  }, []);
+  }, [listId]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -47,8 +52,13 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
     }
   };
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
+  // Confirm cancel if any changes where made, otherwise just close
+  const isDirty =
+    originalList &&
+    JSON.stringify(updatedList) !== JSON.stringify(originalList);
+  const handleSafeClose = unsavedChanges(isDirty, onClose);
+
+  const handleDelete = async () => {
     try {
       await deleteList(listId);
       onListUpdated();
@@ -57,9 +67,11 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
     }
   };
 
+  const handleSafeDelete = deletionConfirmation(handleDelete);
+
   return (
     <div className="overlay">
-      <div className="backdrop" onClick={onClose}></div>
+      <div className="backdrop" onClick={handleSafeClose}></div>
 
       <form id="task" className="content card">
         <h2 className="tab-title">Update list</h2>
@@ -82,10 +94,10 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
           <button id="confirm" onClick={handleSubmit}>
             Update
           </button>
-          <button id="cancel" type="button" onClick={onClose}>
+          <button id="cancel" type="button" onClick={handleSafeClose}>
             Cancel
           </button>
-          <button id="delete" type="button" onClick={handleDelete}>
+          <button id="delete" type="button" onClick={handleSafeDelete}>
             Delete
           </button>
         </section>

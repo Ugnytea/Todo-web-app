@@ -1,13 +1,16 @@
+import { useEffect, useState } from "react";
 import { getSpecificTask, updateTask, deleteTask } from "../../api/apiTasks";
 import { getAllLists } from "../../api/apiLists";
 
 import { Star } from "../../features/tasks/components/index.js";
-import { useEffect, useState } from "react";
+import { unsavedChanges } from "./confirmation/unsavedChanges.jsx";
+import { deletionConfirmation } from "./confirmation/deletionConfirmation.jsx";
 
 import "./Overlay.scss";
 
 function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
   const [lists, setLists] = useState([]);
+  const [originalTask, setOriginalTask] = useState(null);
   const [updatedTask, setUpdatedTask] = useState({
     id: "",
     title: "",
@@ -22,7 +25,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     const loadTask = async () => {
       try {
         const data = await getSpecificTask(taskId);
-        setUpdatedTask({
+        const formattedData = {
           id: data.id || "",
           title: data.title || "",
           description: data.description || "",
@@ -30,7 +33,10 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           important: data.important || "false",
           completed: data.completed || "false",
           groupName: data.groupName || "",
-        });
+        };
+
+        setUpdatedTask(formattedData);
+        setOriginalTask(formattedData);
       } catch (error) {
         console.error("Failed to load task:", error);
       }
@@ -46,7 +52,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     };
     loadTask();
     loadLists();
-  }, []);
+  }, [taskId]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -68,9 +74,13 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     }
   };
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
+  // Confirm cancel if any changes where made, otherwise just close
+  const isDirty =
+    originalTask &&
+    JSON.stringify(updatedTask) !== JSON.stringify(originalTask);
+  const handleSafeClose = unsavedChanges(isDirty, onClose);
 
+  const handleDelete = async () => {
     try {
       await deleteTask(taskId);
       onTaskUpdated();
@@ -79,9 +89,11 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     }
   };
 
+  const handleSafeDelete = deletionConfirmation(handleDelete);
+
   return (
     <div className="overlay">
-      <div className="backdrop" onClick={onClose}></div>
+      <div className="backdrop" onClick={handleSafeClose}></div>
 
       <form id="task" className="content card">
         <h2 className="tab-title">Update task</h2>
@@ -150,10 +162,10 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           <button id="confirm" onClick={handleSubmit}>
             Update
           </button>
-          <button id="cancel" type="button" onClick={onClose}>
+          <button id="cancel" type="button" onClick={handleSafeClose}>
             Cancel
           </button>
-          <button id="delete" type="button" onClick={handleDelete}>
+          <button id="delete" type="button" onClick={handleSafeDelete}>
             Delete
           </button>
         </section>
