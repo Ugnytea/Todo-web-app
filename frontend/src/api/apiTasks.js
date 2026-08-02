@@ -44,3 +44,9 @@ export const deleteTask = async (id) => {
   const response = await api.delete(`/delete/${id}`);
   return response.data;
 };
+
+// Delete group of tasks tasks
+export const deleteGroupOfTasks = async (groupId) => {
+  const response = await api.delete(`/deleteGroupOfTasks/${groupId}`);
+  return response.data;
+};

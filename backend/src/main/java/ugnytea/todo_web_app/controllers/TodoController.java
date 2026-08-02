@@ -128,4 +128,16 @@ public class TodoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/deleteGroupOfTasks/{id}")
+    public ResponseEntity<String> deleteGroupOfTasks (@PathVariable int id) {
+        String sql = "DELETE FROM Task WHERE Group_id=?;";
+        int rowsAffected = template.update(sql, id);
+
+        if (rowsAffected > 0) {
+            return ResponseEntity.ok("Tasks deleted successfully!");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

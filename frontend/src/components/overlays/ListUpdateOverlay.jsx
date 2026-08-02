@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getList, updateList, deleteList } from "../../api/apiLists";
+import { deleteGroupOfTasks } from "../../api/apiTasks";
 import { unsavedChanges } from "./confirmation/unsavedChanges.jsx";
 import { deletionConfirmation } from "./confirmation/deletionConfirmation.jsx";
 
@@ -60,6 +61,10 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated, onListDeleted }) {
 
   const handleDelete = async () => {
     try {
+      if (document.getElementById("deleteTasks").checked) {
+        await deleteGroupOfTasks(listId);
+      }
+
       await deleteList(listId);
       onListUpdated();
       onListDeleted();
@@ -72,7 +77,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated, onListDeleted }) {
 
   return (
     <div className="overlay">
-      <div className="backdrop" onClick={handleSafeClose}></div>
+      <div className="backdrop" onClick={handleSafeClose} />
 
       <form id="task" className="content card">
         <h2 className="tab-title">Update list</h2>
@@ -91,6 +96,11 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated, onListDeleted }) {
           />
         </div>
 
+        <label className="delete-check">
+          Delete all tasks in this list?
+          <input type="checkbox" id="deleteTasks" />
+        </label>
+
         <section className="btn-area">
           <button id="confirm" onClick={handleSubmit}>
             Update
@@ -102,10 +112,6 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated, onListDeleted }) {
             Delete
           </button>
         </section>
-        {/* <label className="delete-check">
-          Delete all tasks in this list?
-          <input type="checkbox" />
-        </label> */}
       </form>
     </div>
   );
