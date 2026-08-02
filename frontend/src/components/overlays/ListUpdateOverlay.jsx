@@ -5,7 +5,7 @@ import { deletionConfirmation } from "./confirmation/deletionConfirmation.jsx";
 
 import "./Overlay.scss";
 
-function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
+function ListUpdateOverlay({ listId, onClose, onListUpdated, onListDeleted }) {
   const [lists, setLists] = useState([]);
   const [originalList, setOriginalList] = useState(null);
   const [updatedList, setUpdatedList] = useState({
@@ -62,6 +62,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
     try {
       await deleteList(listId);
       onListUpdated();
+      onListDeleted();
     } catch (error) {
       console.error("Failed to delete list.", error);
     }
@@ -101,6 +102,10 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
             Delete
           </button>
         </section>
+        {/* <label className="delete-check">
+          Delete all tasks in this list?
+          <input type="checkbox" />
+        </label> */}
       </form>
     </div>
   );

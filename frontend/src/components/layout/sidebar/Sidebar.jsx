@@ -54,6 +54,13 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
   const handleListUpdate = () => {
     setShowListUpdateOverlay(false);
     loadLists();
+    onTaskCreated();
+  };
+
+  const handleListDeletion = () => {
+    setShowListUpdateOverlay(false);
+    loadLists();
+    onViewChange({ type: "" });
   };
 
   const handleTaskClick = (list) => {
@@ -112,7 +119,7 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
                   {list.name}
                 </button>
                 <img
-                  src="./public/icons/pencil.png"
+                  src="./icons/pencil.png"
                   alt="list editing"
                   className="edit"
                   onClick={() => handleTaskClick(list)}
@@ -142,6 +149,7 @@ function Sidebar({ view, onTaskCreated, onViewChange }) {
           listId={selectedList}
           onClose={() => setShowListUpdateOverlay(false)}
           onListUpdated={handleListUpdate}
+          onListDeleted={handleListDeletion}
         />
       )}
     </>
