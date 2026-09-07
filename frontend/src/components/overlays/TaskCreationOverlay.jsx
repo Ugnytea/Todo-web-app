@@ -1,11 +1,13 @@
 import { createTask } from "../../api/apiTasks";
 import { getAllLists } from "../../api/apiLists";
+import useFocus from "../../helper/useFocus";
 
 import { useEffect, useState } from "react";
 
 import "./Overlay.scss";
 
 function TaskCreationOverlay({ onClose, onTaskCreated }) {
+  const inputRef = useFocus();
   const [lists, setLists] = useState([]);
 
   const [task, setTask] = useState({
@@ -61,7 +63,13 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
           <label htmlFor="title" className="input-header">
             Title
           </label>
-          <input type="text" id="title" onChange={handleChange} required />
+          <input
+            type="text"
+            id="title"
+            onChange={handleChange}
+            ref={inputRef}
+            required
+          />
         </div>
         {/* <Star /> */}
         <div>

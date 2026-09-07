@@ -1,7 +1,10 @@
 import { createList } from "../../api/apiLists";
+import useFocus from "../../helper/useFocus";
 import "./Overlay.scss";
 
 function ListCreationOverlay({ onClose, onListCreated }) {
+  const inputRef = useFocus();
+
   const handleSubmit = async () => {
     try {
       await createList(document.getElementById("list-name").value);
@@ -22,7 +25,7 @@ function ListCreationOverlay({ onClose, onListCreated }) {
           <label htmlFor="list-name" className="input-header">
             List name
           </label>
-          <input type="text" id="list-name" required />
+          <input type="text" id="list-name" ref={inputRef} required />
         </div>
 
         <section className="btn-area">

@@ -1,5 +1,6 @@
 import { getSpecificTask, updateTask, deleteTask } from "../../api/apiTasks";
 import { getAllLists } from "../../api/apiLists";
+import useFocus from "../../helper/useFocus";
 
 import { Star } from "../../features/tasks/components/index.js";
 import { useEffect, useState } from "react";
@@ -7,6 +8,7 @@ import { useEffect, useState } from "react";
 import "./Overlay.scss";
 
 function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
+  const inputRef = useFocus();
   const [lists, setLists] = useState([]);
   const [updatedTask, setUpdatedTask] = useState({
     id: "",
@@ -96,6 +98,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
             id="title"
             value={updatedTask.title}
             onChange={handleChange}
+            ref={inputRef}
             required
           />
         </div>

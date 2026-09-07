@@ -1,11 +1,12 @@
 import { getList, updateList, deleteList } from "../../api/apiLists";
+import useFocus from "../../helper/useFocus";
 
 import { useEffect, useState } from "react";
 
 import "./Overlay.scss";
 
 function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
-  const [lists, setLists] = useState([]);
+  const inputRef = useFocus();
   const [updatedList, setUpdatedList] = useState({
     id: "",
     name: "",
@@ -74,6 +75,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
             id="name"
             value={updatedList.name}
             onChange={handleChange}
+            ref={inputRef}
             required
           />
         </div>
