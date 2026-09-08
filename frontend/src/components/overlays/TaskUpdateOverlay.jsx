@@ -93,9 +93,10 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           <label htmlFor="title" className="input-header">
             Title
           </label>
-          <input
+          <textarea
             type="text"
             id="title"
+            maxlength="255"
             value={updatedTask.title}
             onChange={handleChange}
             ref={inputRef}
@@ -107,11 +108,11 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           <label htmlFor="description" className="input-header">
             Description
           </label>
-          <input
+          <textarea
             type="text"
             id="description"
+            maxlength="500"
             value={updatedTask.description}
-            className="desc-input"
             onChange={handleChange}
           />
         </div>

@@ -25,7 +25,13 @@ function ListCreationOverlay({ onClose, onListCreated }) {
           <label htmlFor="list-name" className="input-header">
             List name
           </label>
-          <input type="text" id="list-name" ref={inputRef} required />
+          <textarea
+            type="text"
+            id="list-name"
+            maxlength="255"
+            ref={inputRef}
+            required
+          />
         </div>
 
         <section className="btn-area">

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import "./Overlay.scss";
 
-function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
+function ListUpdateOverlay({ listId, onClose, onListUpdated, onDeletion }) {
   const inputRef = useFocus();
   const [updatedList, setUpdatedList] = useState({
     id: "",
@@ -53,6 +53,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
     try {
       await deleteList(listId);
       onListUpdated();
+      onDeletion();
     } catch (error) {
       console.error("Failed to delete list.", error);
     }
@@ -70,9 +71,10 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated }) {
           <label htmlFor="name" className="input-header">
             List name
           </label>
-          <input
+          <textarea
             type="text"
             id="name"
+            maxlength="255"
             value={updatedList.name}
             onChange={handleChange}
             ref={inputRef}
