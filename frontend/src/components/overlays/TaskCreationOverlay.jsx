@@ -76,7 +76,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
           <label htmlFor="description" className="input-header">
             Description
           </label>
-          <input
+          <textarea
             type="text"
             id="description"
             className="desc-input"
