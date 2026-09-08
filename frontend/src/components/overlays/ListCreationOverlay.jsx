@@ -28,7 +28,7 @@ function ListCreationOverlay({ onClose, onListCreated }) {
           <textarea
             type="text"
             id="list-name"
-            maxlength="255"
+            maxLength="255"
             ref={inputRef}
             required
           />

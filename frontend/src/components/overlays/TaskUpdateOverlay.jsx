@@ -96,7 +96,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           <textarea
             type="text"
             id="title"
-            maxlength="255"
+            maxLength="255"
             value={updatedTask.title}
             onChange={handleChange}
             ref={inputRef}
@@ -111,7 +111,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           <textarea
             type="text"
             id="description"
-            maxlength="500"
+            maxLength="500"
             value={updatedTask.description}
             onChange={handleChange}
           />

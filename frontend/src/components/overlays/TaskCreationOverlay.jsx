@@ -66,7 +66,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
           <textarea
             type="text"
             id="title"
-            maxlength="255"
+            maxLength="255"
             onChange={handleChange}
             ref={inputRef}
             required
@@ -80,7 +80,7 @@ function TaskCreationOverlay({ onClose, onTaskCreated }) {
           <textarea
             type="text"
             id="description"
-            maxlength="500"
+            maxLength="500"
             onChange={handleChange}
           />
         </div>

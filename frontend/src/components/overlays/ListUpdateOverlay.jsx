@@ -74,7 +74,7 @@ function ListUpdateOverlay({ listId, onClose, onListUpdated, onDeletion }) {
           <textarea
             type="text"
             id="name"
-            maxlength="255"
+            maxLength="255"
             value={updatedList.name}
             onChange={handleChange}
             ref={inputRef}
