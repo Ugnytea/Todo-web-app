@@ -17,7 +17,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
     dueTill: "",
     important: "",
     completed: "",
-    groupName: "",
+    groupId: "",
   });
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function TaskUpdateOverlay({ taskId, onClose, onTaskUpdated }) {
           dueTill: data.dueTill || "",
           important: data.important || "false",
           completed: data.completed || "false",
-          groupName: data.groupName || "",
+          groupId: data.groupId || "",
         });
       } catch (error) {
         console.error("Failed to load task:", error);
